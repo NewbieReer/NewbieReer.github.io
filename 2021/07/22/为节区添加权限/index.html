@@ -20,25 +20,31 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NewbieReer&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="​    在ciscn决赛awd的时候，patch一道pwn题，方法是按照P4nda^1和t1an5t^2师傅博客的方法劫持程序到.eh_frame段，再进行下一步的处理。可是队友发现程序执行到.eh_frame段的时候会报错，猜测是缺少可执行权限，于是回来研究一下，发现可以通过修改elf节区头以增加可执行权限。 ​    然而，题目忘记放哪了，随便找了个程序尝试的。最终效果只是看到了【在ida里">
+<meta property="og:type" content="article">
+<meta property="og:title" content="pwn_patch为节区添加权限">
+<meta property="og:url" content="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/index.html">
 <meta property="og:site_name" content="NewbieReer&#39;s blog">
-<meta property="og:description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+<meta property="og:description" content="​    在ciscn决赛awd的时候，patch一道pwn题，方法是按照P4nda^1和t1an5t^2师傅博客的方法劫持程序到.eh_frame段，再进行下一步的处理。可是队友发现程序执行到.eh_frame段的时候会报错，猜测是缺少可执行权限，于是回来研究一下，发现可以通过修改elf节区头以增加可执行权限。 ​    然而，题目忘记放哪了，随便找了个程序尝试的。最终效果只是看到了【在ida里">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5Cflag%E5%AD%97%E6%AE%B5.png">
+<meta property="og:image" content="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5C010editor.png">
+<meta property="og:image" content="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5C%E6%95%88%E6%9E%9C.png">
+<meta property="article:published_time" content="2021-07-22T07:46:46.005Z">
+<meta property="article:modified_time" content="2021-07-22T07:58:48.147Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5Cflag%E5%AD%97%E6%AE%B5.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/","path":"2021/07/22/为节区添加权限/","title":"pwn_patch为节区添加权限"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>NewbieReer's blog</title>
+<title>pwn_patch为节区添加权限 | NewbieReer's blog</title>
   
 
 
@@ -183,16 +189,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -205,9 +212,9 @@
       <meta itemprop="name" content="NewbieReer's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/" class="post-title-link" itemprop="url">pwn_patch为节区添加权限</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          pwn_patch为节区添加权限
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -231,7 +238,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <p>​    在ciscn决赛awd的时候，patch一道pwn题，方法是按照P4nda<a target="_blank" rel="noopener" href="http://p4nda.top/2018/07/02/patch-in-pwn/#%E4%BF%AE%E6%94%B9%E7%A8%8B%E5%BA%8F-eh-frame%E6%AE%B5">^1</a>和t1an5t<a target="_blank" rel="noopener" href="https://tianstcht.github.io/pwn%E9%87%8C%E7%9A%84%E4%B8%80%E4%BA%9Bpatch%E5%BF%83%E5%BE%97/">^2</a>师傅博客的方法劫持程序到.eh_frame段，再进行下一步的处理。可是队友发现程序执行到.eh_frame段的时候会报错，猜测是缺少可执行权限，于是回来研究一下，发现可以通过修改elf节区头以增加可执行权限。</p>
+        <p>​    在ciscn决赛awd的时候，patch一道pwn题，方法是按照P4nda<a target="_blank" rel="noopener" href="http://p4nda.top/2018/07/02/patch-in-pwn/#%E4%BF%AE%E6%94%B9%E7%A8%8B%E5%BA%8F-eh-frame%E6%AE%B5">^1</a>和t1an5t<a target="_blank" rel="noopener" href="https://tianstcht.github.io/pwn%E9%87%8C%E7%9A%84%E4%B8%80%E4%BA%9Bpatch%E5%BF%83%E5%BE%97/">^2</a>师傅博客的方法劫持程序到.eh_frame段，再进行下一步的处理。可是队友发现程序执行到.eh_frame段的时候会报错，猜测是缺少可执行权限，于是回来研究一下，发现可以通过修改elf节区头以增加可执行权限。</p>
 <p>​    然而，题目忘记放哪了，随便找了个程序尝试的。最终效果只是看到了【在ida里显示eh_frame成功添加了权限】，而且我【并没有动调验证】，方法【仅供参考】。</p>
 <p>​    使用【010editor】，注意准备好elf模板<a target="_blank" rel="noopener" href="https://www.sweetscape.com/010editor/repository/files/ELF.bt">^3</a>。找到【struct section_header_table】下某记录中的【Value】 字段==【.eh_frame】的条目。并且将其中对应的值按照下表修改<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/49256383">^4</a>。</p>
 <p><img src="%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5Cflag%E5%AD%97%E6%AE%B5.png" alt="flag字段"></p>
@@ -240,7 +247,6 @@
 <p>放进ida中打开观察权限</p>
 <p><img src="%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5C%E6%95%88%E6%9E%9C.png" alt="效果"></p>
 
-      
     </div>
 
     
@@ -248,167 +254,22 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/" rel="prev" title="c语言指针">
+                  <i class="fa fa-chevron-left"></i> c语言指针
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
     </footer>
   </article>
 </div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/" class="post-title-link" itemprop="url">c语言指针</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2021-07-22 15:46:46 / Modified: 15:53:14" itemprop="dateCreated datePublished" datetime="2021-07-22T15:46:46+08:00">2021-07-22</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>c语言声明指针有可能产生歧义的理解</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* a,b;</span><br></pre></td></tr></table></figure>
-
-<p>意为申请一个<strong>【int*】</strong>的<strong>a</strong>和<strong>【int】</strong>的<strong>b</strong>，但是换一种写法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a,b;</span><br></pre></td></tr></table></figure>
-
-<p>就显得比较清楚，那么申请两个【int*】可以这么写</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a,*b;</span><br></pre></td></tr></table></figure>
-
-<p>或者<a target="_blank" rel="noopener" href="https://www.cnblogs.com/csyisong/archive/2009/01/09/1372363.html">^1</a></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> * PINT;</span><br><span class="line">PINT a,b;</span><br></pre></td></tr></table></figure>
-
-<p>根据<strong>zpan</strong>的回答<a target="_blank" rel="noopener" href="https://www.zhihu.com/question/27123039">^2</a>，扩充了一些对c语言指针的理解（注意：[]的优先级高于*）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a[<span class="number">5</span>];<span class="comment">//*a[i]为int,那么a[i]为int*</span></span><br><span class="line"><span class="keyword">int</span> (*a)[<span class="number">5</span>];<span class="comment">//(*a)[i]为int,所以(*a)数组名,即数组地址。a就是指向数组的指针，以(*a)[i]访问数组。</span></span><br><span class="line"><span class="keyword">int</span> (*a)(<span class="keyword">int</span>);<span class="comment">//(*a)看作整体:(*a)为返回一个int,接受一个int参数的函数:a是函数指针</span></span><br><span class="line"><span class="keyword">int</span> (*a[<span class="number">5</span>])(<span class="keyword">int</span>);<span class="comment">//(*a[i])返回值为int,参数类型为int。这是一个函数指针数组</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/19/Hellworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/19/Hellworld/" class="post-title-link" itemprop="url">Fuck_You_World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-19 18:16:00" itemprop="dateCreated datePublished" datetime="2021-07-19T18:16:00+08:00">2021-07-19</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-22 16:00:46" itemprop="dateModified" datetime="2021-07-22T16:00:46+08:00">2021-07-22</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>ffffffffffffffffffffffffffffffffffffffffffffffffff</p>
-
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
 
 

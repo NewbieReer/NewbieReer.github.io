@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-22 15:46:46 / Modified: 15:58:48" itemprop="dateCreated datePublished" datetime="2021-07-22T15:46:46+08:00">2021-07-22</time>
+      <time title="Created: 2021-07-22 15:46:46 / Modified: 16:07:41" itemprop="dateCreated datePublished" datetime="2021-07-22T15:46:46+08:00">2021-07-22</time>
     </span>
 
   
@@ -234,11 +234,11 @@
           <p>​    在ciscn决赛awd的时候，patch一道pwn题，方法是按照P4nda<a target="_blank" rel="noopener" href="http://p4nda.top/2018/07/02/patch-in-pwn/#%E4%BF%AE%E6%94%B9%E7%A8%8B%E5%BA%8F-eh-frame%E6%AE%B5">^1</a>和t1an5t<a target="_blank" rel="noopener" href="https://tianstcht.github.io/pwn%E9%87%8C%E7%9A%84%E4%B8%80%E4%BA%9Bpatch%E5%BF%83%E5%BE%97/">^2</a>师傅博客的方法劫持程序到.eh_frame段，再进行下一步的处理。可是队友发现程序执行到.eh_frame段的时候会报错，猜测是缺少可执行权限，于是回来研究一下，发现可以通过修改elf节区头以增加可执行权限。</p>
 <p>​    然而，题目忘记放哪了，随便找了个程序尝试的。最终效果只是看到了【在ida里显示eh_frame成功添加了权限】，而且我【并没有动调验证】，方法【仅供参考】。</p>
 <p>​    使用【010editor】，注意准备好elf模板<a target="_blank" rel="noopener" href="https://www.sweetscape.com/010editor/repository/files/ELF.bt">^3</a>。找到【struct section_header_table】下某记录中的【Value】 字段==【.eh_frame】的条目。并且将其中对应的值按照下表修改<a target="_blank" rel="noopener" href="https://zhuanlan.zhihu.com/p/49256383">^4</a>。</p>
-<p><img src="%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5Cflag%E5%AD%97%E6%AE%B5.png" alt="flag字段"></p>
+<p><img src="%5Cimages%5Cpwn_patch_privilege%5Csh_flag.png" alt="flag字段"></p>
 <p>于是为其添加了RWX权限后：</p>
-<p><img src="%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5C010editor.png" alt="010editor"></p>
+<p><img src="%5Cimages%5Cpwn_patch_privilege%5C010editor.png" alt="010editor"></p>
 <p>放进ida中打开观察权限</p>
-<p><img src="%5Cimages%5Cpwn_patch%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90%5C%E6%95%88%E6%9E%9C.png" alt="效果"></p>
+<p><img src="%5Cimages%5Cpwn_patch_privilege%5Ceffect.png" alt="效果"></p>
 
       
     </div>
@@ -363,7 +363,7 @@
     </span>
       <header class="post-header">
         <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/19/Hellworld/" class="post-title-link" itemprop="url">Fuck_You_World</a>
+          <a href="/2021/07/19/Hellworld/" class="post-title-link" itemprop="url">Fuck_World</a>
         </h2>
 
         <div class="post-meta-container">
@@ -381,7 +381,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-07-22 16:00:46" itemprop="dateModified" datetime="2021-07-22T16:00:46+08:00">2021-07-22</time>
+        <time title="Modified: 2021-07-23 14:29:57" itemprop="dateModified" datetime="2021-07-23T14:29:57+08:00">2021-07-23</time>
       </span>
 
   

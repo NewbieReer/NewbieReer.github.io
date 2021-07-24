@@ -218,7 +218,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-24 09:43:07 / Modified: 17:45:27" itemprop="dateCreated datePublished" datetime="2021-07-24T09:43:07+08:00">2021-07-24</time>
+      <time title="Created: 2021-07-24 09:43:07 / Modified: 17:47:54" itemprop="dateCreated datePublished" datetime="2021-07-24T09:43:07+08:00">2021-07-24</time>
     </span>
 
   
@@ -250,7 +250,7 @@
 <h4 id="【-】FirstThunk字段"><a href="#【-】FirstThunk字段" class="headerlink" title="【!】FirstThunk字段"></a>【!】FirstThunk字段</h4><p><a href="#%E7%A4%BA%E6%84%8F%E5%9B%BE">【IAT】</a>的【RVA】。【IAT】是一个【IMAGE_THUNK_DATA】结构体数组<a href="%E5%8F%AF%E4%BB%A5%E5%92%8COriginalFirstThunk%E5%AD%97%E6%AE%B5%E5%86%85%E5%AE%B9%E5%AF%B9%E6%AF%94%EF%BC%8C%E5%8F%91%E7%8E%B0INT%E4%B9%9F%E6%98%AF%E4%B8%80%E4%B8%AAIMAGE_THUNK_DATA%E7%BB%93%E6%9E%84%E4%BD%93%E6%95%B0%E7%BB%84%E3%80%82">^3</a>。</p>
 <hr>
 <h3 id="示意图"><a href="#示意图" class="headerlink" title="示意图"></a>示意图</h3><p>OriginalFirstThunk和FirstThunk字段相似，指向了同一种结构体数组【IMAGE_THUNK_DATA】。这些数组的叫法<strong>INT：Import Name Table 输入名称表</strong>，<strong>IAT：Import Address Table 输入地址表</strong>。下图<a href="%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86%E7%AC%AC11%E7%AB%A0%EF%BC%8C%E5%9B%BE11.13">^4</a>展示的是一个可执行文件正在从USER32.DLL里输入一些API。</p>
-<p><img src="/image/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%89%8D.png" alt="未完成装载"></p>
+<p><img src="/images/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%89%8D.png" alt="未完成装载"></p>
 <p>读者看到这里可能会产生疑惑，为什么INT和IAT指向的是【同一个地方】，不要着急，下面会有<a href="#%E8%BE%93%E5%85%A5%E5%9C%B0%E5%9D%80%E8%A1%A8">解释</a>。</p>
 <h3 id="关于IMAGE-THUNK-DATA"><a href="#关于IMAGE-THUNK-DATA" class="headerlink" title="关于IMAGE_THUNK_DATA"></a>关于IMAGE_THUNK_DATA</h3><pre><code>* 当IAMGE_THUNK_DATA[^6]最高位为【1】时，表示函数以【序列号】方式输入，这时剩下的低位[^5]被看作一个函数序号。
 * 当IMAGE_THUNK_DATA字段最高位为【0】时，表示函数以【字符串】类型的函数名方式输入，这时此结构体是一个地址，指向一个【IMAGE_IMPORT_BY_NAME】[^7]结构。
@@ -263,7 +263,7 @@
 * FirstThunk，指向IAT，由PE装载器【重写】
 </code></pre>
 <p>PE加载器先搜索【OriginalFirstThunk】指向的【INT】指向的【IMAGE_IMPORT_BY_NAME】结构指向的输入函数的【地址】。<br>然后加载器用函数真正的【入口地址】来代替【FirstThunk】指向的【IAT】中的元素。[^10]<br><a href="#%E7%A4%BA%E6%84%8F%E5%9B%BE">上图</a>已经转换成了下图的样子，这时输入表的其他部分就不重要了，程序依靠IAT提供的函数地址就可以正常运行。</p>
-<p><img src="/image/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%90%8E.png" alt="完成装载"></p>
+<p><img src="/images/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%90%8E.png" alt="完成装载"></p>
 <p>两种特殊情况：</p>
 <pre><code>* 一些函数仅由序号引出。也就是说不能通过函数名调用它们，只能通过它们的位置[调用](#关于IMAGE_THUNK_DATA)。
 * 程序OrginalFirstThunk值为0。初始化时，系统根据FirstThunk的值找到【指向函数名】的地址数组。再根据函数名得到【入口地址】，再用入口地址【取代地址数组】的原值。

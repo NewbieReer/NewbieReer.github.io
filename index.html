@@ -86,7 +86,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags<span class="badge">0</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">5</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">6</span></a></li>
   </ul>
 </nav>
 
@@ -133,7 +133,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">5</span>
+          <span class="site-state-item-count">6</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -184,6 +184,89 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="NewbieReer">
+      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NewbieReer's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/" class="post-title-link" itemprop="url">华电-工控</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2021-09-06 05:27:24 / Modified: 05:31:20" itemprop="dateCreated datePublished" datetime="2021-09-06T05:27:24+08:00">2021-09-06</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="二类-easy-re"><a href="#二类-easy-re" class="headerlink" title="二类-easy_re"></a>二类-easy_re</h1><p>放到ida里，shift f12找关键字符串</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171222385.png" alt="image-20210904171222385"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171316384.png" alt="image-20210904171316384"></p>
+<p>交叉引用找到关键位置</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171442206.png" alt="image-20210904171442206"></p>
+<p>Block是比较的字符串，下面进入函数看怎么生成的</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171458457.png" alt="image-20210904171458457"></p>
+<p>上面的扫一眼就知道是base64<br>但sub_4538ED和sub_455A17函数跟进去有些异常，有奇怪的字符串，猜测是base64换表，直接下断点，调试（注意要填上参数，按要求随便填一个，能断住就行）</p>
+<p><img src="image-20210904171624322.png" alt="image-20210904171624322"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171708059.png" alt="image-20210904171708059"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171926617.png" alt="image-20210904171926617"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171935612.png" alt="image-20210904171935612"></p>
+<p>上面一系列操作断在生成要换的base64表处。</p>
+<p>复制出来，进行base64换表操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">str1 = <span class="string">&quot;Uvm9LRM7MM2DU77yOY7tOYUNHM/=&quot;</span></span><br><span class="line"></span><br><span class="line">string1 = <span class="string">&quot;/+9876543210PUNSLQJOHMFKDIBGZEXCVATYRWjohmfkdibgzexcvatyrwpunslq&quot;</span></span><br><span class="line">string2 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (base64.b64decode(str1.translate(<span class="built_in">str</span>.maketrans(string1,string2))))</span><br></pre></td></tr></table></figure>
+
+<p>运行上面的代码即可获得flag</p>
+<hr>
+<p>​    高中喜欢的一个人在华电上学，因此听说了这个比赛华电主办后，哪怕它是个野鸡比赛，也打算报名好好打，希望能在线下去曾经生活过的地方决赛。和队友做出三道题，re是一血，加成很高，1000分。但哪怕这样似乎也进不了决赛了，有那么一瞬间排名进了前十，剩下的题尽全力地在做，却阻止不了排名逐渐下滑的颓势，这种无力感让人很难过。但后来想，往事早已逝去，如今却连“华电”这个名字也被执念纠缠得模糊不清。七年了，什么时候才能彻底放下呢</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 

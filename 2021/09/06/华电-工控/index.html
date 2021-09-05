@@ -20,27 +20,36 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="c语言声明指针有可能产生歧义的理解 1int* a,b;  意为申请一个【int*】的a和【int】的b，但是换一种写法 1int *a,b;  就显得比较清楚，那么申请两个【int*】可以这么写 1int *a,*b;  或者[1] 12typedef char * PINT;PINT a,b;  根据zpan的回答[2]，扩充了一些对c语言指针的理解（注意：[]的优先级高于*） 1234int">
+<meta name="description" content="二类-easy_re放到ida里，shift f12找关键字符串   交叉引用找到关键位置  Block是比较的字符串，下面进入函数看怎么生成的  上面的扫一眼就知道是base64但sub_4538ED和sub_455A17函数跟进去有些异常，有奇怪的字符串，猜测是base64换表，直接下断点，调试（注意要填上参数，按要求随便填一个，能断住就行）     上面一系列操作断在生成要换的base64表">
 <meta property="og:type" content="article">
-<meta property="og:title" content="c语言指针">
-<meta property="og:url" content="http://example.com/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/index.html">
+<meta property="og:title" content="华电-工控">
+<meta property="og:url" content="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/index.html">
 <meta property="og:site_name" content="NewbieReer&#39;s blog">
-<meta property="og:description" content="c语言声明指针有可能产生歧义的理解 1int* a,b;  意为申请一个【int*】的a和【int】的b，但是换一种写法 1int *a,b;  就显得比较清楚，那么申请两个【int*】可以这么写 1int *a,*b;  或者[1] 12typedef char * PINT;PINT a,b;  根据zpan的回答[2]，扩充了一些对c语言指针的理解（注意：[]的优先级高于*） 1234int">
+<meta property="og:description" content="二类-easy_re放到ida里，shift f12找关键字符串   交叉引用找到关键位置  Block是比较的字符串，下面进入函数看怎么生成的  上面的扫一眼就知道是base64但sub_4538ED和sub_455A17函数跟进去有些异常，有奇怪的字符串，猜测是base64换表，直接下断点，调试（注意要填上参数，按要求随便填一个，能断住就行）     上面一系列操作断在生成要换的base64表">
 <meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2021-07-22T07:46:46.002Z">
-<meta property="article:modified_time" content="2021-07-22T07:53:14.882Z">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171222385.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171316384.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171442206.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171458457.png">
+<meta property="og:image" content="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171624322.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171708059.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171926617.png">
+<meta property="og:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171935612.png">
+<meta property="article:published_time" content="2021-09-05T21:27:24.040Z">
+<meta property="article:modified_time" content="2021-09-05T21:31:20.839Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171222385.png">
 
 
-<link rel="canonical" href="http://example.com/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/">
+<link rel="canonical" href="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/","path":"2021/07/22/c语言指针/","title":"c语言指针"}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/","path":"2021/09/06/华电-工控/","title":"华电-工控"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>c语言指针 | NewbieReer's blog</title>
+<title>华电-工控 | NewbieReer's blog</title>
   
 
 
@@ -106,7 +115,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <ul class="sidebar-nav">
         <li class="sidebar-nav-toc">
           Table of Contents
@@ -119,6 +128,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E4%BA%8C%E7%B1%BB-easy-re"><span class="nav-text">二类-easy_re</span></a></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -196,7 +206,7 @@
   
 
   <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/22/c%E8%AF%AD%E8%A8%80%E6%8C%87%E9%92%88/">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
       <meta itemprop="image" content="/images/touxiang.jpg">
@@ -209,7 +219,7 @@
     </span>
       <header class="post-header">
         <h1 class="post-title" itemprop="name headline">
-          c语言指针
+          华电-工控
         </h1>
 
         <div class="post-meta-container">
@@ -221,7 +231,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2021-07-22 15:46:46 / Modified: 15:53:14" itemprop="dateCreated datePublished" datetime="2021-07-22T15:46:46+08:00">2021-07-22</time>
+      <time title="Created: 2021-09-06 05:27:24 / Modified: 05:31:20" itemprop="dateCreated datePublished" datetime="2021-09-06T05:27:24+08:00">2021-09-06</time>
     </span>
 
   
@@ -234,29 +244,26 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>c语言声明指针有可能产生歧义的理解</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span>* a,b;</span><br></pre></td></tr></table></figure>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="二类-easy-re"><a href="#二类-easy-re" class="headerlink" title="二类-easy_re"></a>二类-easy_re</h1><p>放到ida里，shift f12找关键字符串</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171222385.png" alt="image-20210904171222385"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171316384.png" alt="image-20210904171316384"></p>
+<p>交叉引用找到关键位置</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171442206.png" alt="image-20210904171442206"></p>
+<p>Block是比较的字符串，下面进入函数看怎么生成的</p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171458457.png" alt="image-20210904171458457"></p>
+<p>上面的扫一眼就知道是base64<br>但sub_4538ED和sub_455A17函数跟进去有些异常，有奇怪的字符串，猜测是base64换表，直接下断点，调试（注意要填上参数，按要求随便填一个，能断住就行）</p>
+<p><img src="image-20210904171624322.png" alt="image-20210904171624322"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171708059.png" alt="image-20210904171708059"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171926617.png" alt="image-20210904171926617"></p>
+<p><img src="/images/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/image-20210904171935612.png" alt="image-20210904171935612"></p>
+<p>上面一系列操作断在生成要换的base64表处。</p>
+<p>复制出来，进行base64换表操作</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> base64</span><br><span class="line"><span class="keyword">import</span> string</span><br><span class="line"></span><br><span class="line">str1 = <span class="string">&quot;Uvm9LRM7MM2DU77yOY7tOYUNHM/=&quot;</span></span><br><span class="line"></span><br><span class="line">string1 = <span class="string">&quot;/+9876543210PUNSLQJOHMFKDIBGZEXCVATYRWjohmfkdibgzexcvatyrwpunslq&quot;</span></span><br><span class="line">string2 = <span class="string">&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;</span></span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span> (base64.b64decode(str1.translate(<span class="built_in">str</span>.maketrans(string1,string2))))</span><br></pre></td></tr></table></figure>
 
-<p>意为申请一个<strong>【int*】</strong>的<strong>a</strong>和<strong>【int】</strong>的<strong>b</strong>，但是换一种写法</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a,b;</span><br></pre></td></tr></table></figure>
+<p>运行上面的代码即可获得flag</p>
+<hr>
+<p>​    高中喜欢的一个人在华电上学，因此听说了这个比赛华电主办后，哪怕它是个野鸡比赛，也打算报名好好打，希望能在线下去曾经生活过的地方决赛。和队友做出三道题，re是一血，加成很高，1000分。但哪怕这样似乎也进不了决赛了，有那么一瞬间排名进了前十，剩下的题尽全力地在做，却阻止不了排名逐渐下滑的颓势，这种无力感让人很难过。但后来想，往事早已逝去，如今却连“华电”这个名字也被执念纠缠得模糊不清。七年了，什么时候才能彻底放下呢</p>
 
-<p>就显得比较清楚，那么申请两个【int*】可以这么写</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a,*b;</span><br></pre></td></tr></table></figure>
-
-<p>或者<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.cnblogs.com/csyisong/archive/2009/01/09/1372363.html
-">[1]</span></a></sup></p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="keyword">char</span> * PINT;</span><br><span class="line">PINT a,b;</span><br></pre></td></tr></table></figure>
-
-<p>根据<strong>zpan</strong>的回答<sup id="fnref:2"><a href="#fn:2" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="https://www.zhihu.com/question/27123039">[2]</span></a></sup>，扩充了一些对c语言指针的理解（注意：[]的优先级高于*）</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">int</span> *a[<span class="number">5</span>];<span class="comment">//*a[i]为int,那么a[i]为int*</span></span><br><span class="line"><span class="keyword">int</span> (*a)[<span class="number">5</span>];<span class="comment">//(*a)[i]为int,所以(*a)数组名,即数组地址。a就是指向数组的指针，以(*a)[i]访问数组。</span></span><br><span class="line"><span class="keyword">int</span> (*a)(<span class="keyword">int</span>);<span class="comment">//(*a)看作整体:(*a)为返回一个int,接受一个int参数的函数:a是函数指针</span></span><br><span class="line"><span class="keyword">int</span> (*a[<span class="number">5</span>])(<span class="keyword">int</span>);<span class="comment">//(*a[i])返回值为int,参数类型为int。这是一个函数指针数组</span></span><br></pre></td></tr></table></figure>
-
-
-
-
-
-
-
-<div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.cnblogs.com/csyisong/archive/2009/01/09/1372363.html<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.zhihu.com/question/27123039<a href="#fnref:2" rev="footnote"> ↩</a></span></li></ol></div></div>
     </div>
 
     
@@ -269,14 +276,11 @@
 
           <div class="post-nav">
             <div class="post-nav-item">
-                <a href="/2021/07/19/Hellworld/" rel="prev" title="Fuck_World">
-                  <i class="fa fa-chevron-left"></i> Fuck_World
+                <a href="/2021/07/29/%E6%9C%89%E8%B6%A3%E7%9A%84%E8%B5%84%E6%BA%90%E8%A1%A8/" rel="prev" title="有趣的资源表（一）">
+                  <i class="fa fa-chevron-left"></i> 有趣的资源表（一）
                 </a>
             </div>
             <div class="post-nav-item">
-                <a href="/2021/07/22/%E4%B8%BA%E8%8A%82%E5%8C%BA%E6%B7%BB%E5%8A%A0%E6%9D%83%E9%99%90/" rel="next" title="pwn_patch为节区添加权限">
-                  pwn_patch为节区添加权限 <i class="fa fa-chevron-right"></i>
-                </a>
             </div>
           </div>
     </footer>

@@ -20,12 +20,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="前言​    本文参考资料几乎全部来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。 ​    如果读者只想了解【资源表】相关知识，可以直接从资源表的组织方式开始看起。  资源分类​    资源指的是windows的各种界面，包">
+<meta name="description" content="前言​    本文参考资料几乎全部来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。 ​    如果读者只想了解【资源表】相关知识，可以直接从资源表的组织方式开始看起。">
 <meta property="og:type" content="article">
 <meta property="og:title" content="有趣的资源表（一）">
 <meta property="og:url" content="http://example.com/2021/07/29/%E6%9C%89%E8%B6%A3%E7%9A%84%E8%B5%84%E6%BA%90%E8%A1%A8/index.html">
 <meta property="og:site_name" content="NewbieReer&#39;s blog">
-<meta property="og:description" content="前言​    本文参考资料几乎全部来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。 ​    如果读者只想了解【资源表】相关知识，可以直接从资源表的组织方式开始看起。  资源分类​    资源指的是windows的各种界面，包">
+<meta property="og:description" content="前言​    本文参考资料几乎全部来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。 ​    如果读者只想了解【资源表】相关知识，可以直接从资源表的组织方式开始看起。">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/%E8%B5%84%E6%BA%90%E8%A1%A8/options.png">
 <meta property="og:image" content="http://example.com/images/资源表/效果.png">
@@ -36,7 +36,7 @@
 <meta property="og:image" content="http://example.com/images/%E8%B5%84%E6%BA%90%E8%A1%A8/%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%B5%84%E6%BA%901.png">
 <meta property="og:image" content="http://example.com/images/%E8%B5%84%E6%BA%90%E8%A1%A8/%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9A%84%E7%B1%BB%E5%9E%8B%E8%B5%84%E6%BA%902.png">
 <meta property="article:published_time" content="2021-07-29T15:33:15.926Z">
-<meta property="article:modified_time" content="2021-07-29T15:39:07.662Z">
+<meta property="article:modified_time" content="2021-09-19T15:52:56.814Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/%E8%B5%84%E6%BA%90%E8%A1%A8/options.png">
@@ -229,10 +229,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-07-29 23:33:15 / Modified: 23:39:07" itemprop="dateCreated datePublished" datetime="2021-07-29T23:33:15+08:00">2021-07-29</time>
+      <time title="Created: 2021-07-29 23:33:15" itemprop="dateCreated datePublished" datetime="2021-07-29T23:33:15+08:00">2021-07-29</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-09-19 23:52:56" itemprop="dateModified" datetime="2021-09-19T23:52:56+08:00">2021-09-19</time>
+      </span>
 
   
 </div>
@@ -246,6 +252,8 @@
     <div class="post-body" itemprop="articleBody">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本文参考资料<strong>几乎全部</strong>来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。</p>
 <p>​    如果读者只想了解【资源表】相关知识，可以直接从<a href="#%E8%B5%84%E6%BA%90%E8%A1%A8%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F">资源表的组织方式</a>开始看起。</p>
+<span id="more"></span>
+
 <hr>
 <h2 id="资源分类"><a href="#资源分类" class="headerlink" title="资源分类"></a>资源分类</h2><p>​    资源指的是windows的各种界面，<a href="#%E9%A2%84%E5%AE%9A%E4%B9%89%E7%9A%84%E8%B5%84%E6%BA%90%E7%B1%BB%E5%9E%8B">包括</a>：加速键<sup id="fnref:1"><a href="#fn:1" rel="footnote"><span class="hint--top hint--error hint--medium hint--rounded hint--bounce" aria-label="热键、快捷键。
 ">[1]</span></a></sup>、位图、光标等。<br>​    上述总共16个标准资源，但是在这16种资源之中，微软为开发者留了一个扩展，也就是第10项标准资源类别【RT_RCDATA】。后来对于新引入的资源（非标准资源），微软对其数据的组织方式不再明示。因此很多第三方软件，不得不扩展【RT_RCDATA】这个类别，将其所有新定义的类型全设置为RT_RCDATA。</p>

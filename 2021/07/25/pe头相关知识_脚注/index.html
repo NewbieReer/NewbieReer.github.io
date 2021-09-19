@@ -30,7 +30,7 @@
 <meta property="og:image" content="http://example.com/images/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%89%8D.png">
 <meta property="og:image" content="http://example.com/images/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%90%8E.png">
 <meta property="article:published_time" content="2021-07-25T03:19:46.631Z">
-<meta property="article:modified_time" content="2021-07-25T03:45:36.062Z">
+<meta property="article:modified_time" content="2021-09-19T15:52:13.248Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/pe%E5%A4%B4%E7%9B%B8%E5%85%B3%E7%9F%A5%E8%AF%86/%E5%8A%A0%E8%BD%BD%E5%89%8D.png">
@@ -223,10 +223,16 @@
         <i class="far fa-calendar"></i>
       </span>
       <span class="post-meta-item-text">Posted on</span>
-      
 
-      <time title="Created: 2021-07-25 11:19:46 / Modified: 11:45:36" itemprop="dateCreated datePublished" datetime="2021-07-25T11:19:46+08:00">2021-07-25</time>
+      <time title="Created: 2021-07-25 11:19:46" itemprop="dateCreated datePublished" datetime="2021-07-25T11:19:46+08:00">2021-07-25</time>
     </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2021-09-19 23:52:13" itemprop="dateModified" datetime="2021-09-19T23:52:13+08:00">2021-09-19</time>
+      </span>
 
   
 </div>
@@ -239,6 +245,9 @@
     
     <div class="post-body" itemprop="articleBody">
         <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h3 id="RVA和RAW的转化"><a href="#RVA和RAW的转化" class="headerlink" title="RVA和RAW的转化"></a>RVA和RAW的转化</h3><p>​    也即目标数据在【内存中的偏移】和在【文件中的偏移】的转化。<br>​        RAW - PointerToRawData = RVA - VirtualAddress<br>​        RAW = RVA - VirtualAddress + PointerToRawData<br>​    需要注意的是【PointerToRawData】以及【VirtualAddress】，在上式中表示的是在【IMAGE_SECTION_HEADER结构体】里的字段，指的是【磁盘文件中节区起始地址】以及【内存中节区起始地址】。</p>
+<span id="more"></span>
+
+
 <h3 id="IMAGE-IMPORT-DESCRIPTOR"><a href="#IMAGE-IMPORT-DESCRIPTOR" class="headerlink" title="IMAGE_IMPORT_DESCRIPTOR"></a>IMAGE_IMPORT_DESCRIPTOR</h3><p>​    首先介绍IMAGE_IMPORT_DESCRIPTOR（简称【IID】）。输入表由【IID数组】开始，以一个【全0】的IID结构结束。</p>
 <figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">typedef</span> <span class="class"><span class="keyword">struct</span> _<span class="title">IMAGE_IMPORT_DESCRIPTOR</span> &#123;</span></span><br><span class="line">	<span class="class"><span class="keyword">union</span> &#123;</span></span><br><span class="line">		DWORD Characteristics;</span><br><span class="line">		DWORD OriginalFirstThunk;			<span class="comment">//INT(Import Name Table) address (RVA)</span></span><br><span class="line">	&#125;;</span><br><span class="line">	DWORD TimeDateStamp;</span><br><span class="line">	DWORD ForwarderChain;</span><br><span class="line">	DWORD Name;								<span class="comment">//library name string address (RVA)</span></span><br><span class="line">	DWORD FirstThunk;						<span class="comment">//IAT(Import Address Table) address (RVA)</span></span><br><span class="line">&#125; IMAGE_IMPORT_DESCRIPTOR;</span><br></pre></td></tr></table></figure>
 

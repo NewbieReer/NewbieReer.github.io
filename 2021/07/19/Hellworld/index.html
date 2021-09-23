@@ -28,7 +28,7 @@
 <meta property="og:description" content="fffffffffffffffffffffffffff">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-19T10:16:00.000Z">
-<meta property="article:modified_time" content="2021-09-21T05:04:17.408Z">
+<meta property="article:modified_time" content="2021-09-23T11:51:13.443Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -227,7 +227,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-21 13:04:17" itemprop="dateModified" datetime="2021-09-21T13:04:17+08:00">2021-09-21</time>
+        <time title="Modified: 2021-09-23 19:51:13" itemprop="dateModified" datetime="2021-09-23T19:51:13+08:00">2021-09-23</time>
       </span>
 
   
@@ -255,7 +255,6 @@ sub_80485C4是一些花指令，不知道是什么原理，它就是可以成功
 [PID, PPID, PGID与SID_个人博客-CSDN博客](https://blog.csdn.net/Justdoit123_/article/details/101347971)
 
 **系统调用：eax存入0x80， ebx  ecx  edx存入第1、2、3个参数**
-
 
 sub_80485C4
 int a = get_pid();    //系统调用号 0x14
@@ -366,6 +365,61 @@ f1.write(s1)
 f.close()
 f1.close()
 
+**四、3**
+
+64位系统调用传参方式：
+
+​    首先将系统调用号 传入 rax，然后将参数 从左到右 依次存入 rdi，rsi，rdx，rcx， r8， r9寄存器中，返回值存在rax寄存器
+
+调用方式：
+
+​    syscall
+
+**四、[SCTF2019]creakme**
+
+
+from idc_bc695 import *
+key1 = "sycloversyclover"
+len1 = 16
+j = 0
+for i in range(0x404000, 0x404200):
+    b = Byte(i)
+    PatchByte(i,~(b^ord(key1[j])))
+    j += 1
+    if j >= len1:
+        j = 0
+
+
+
+s = ">pvfqYc,4tTc2UxRmlJ,sB{Fh4Ck2:CFOb4ErhtIcoLo"
+l = list(map(lambda x: ord(x)-1,list(s)))
+l = l[::-1]
+l = list(map(chr,l))
+s1 = ""
+print(s1.join(l))
+
+http://tool.chacuo.net/cryptaes
+
+解aes cbc
+iv = sctfsctfsctfsctf
+key = sycloversyclover
+
+**五、[CISCN2018]2ex**
+import base64
+import string
+
+str1 = "x2dtJEOmyjacxDemx2eczT5cVS9fVUGvWTuZWjuexjRqy24rV29q"
+
+string1 = '@,.1fgvw#`/2ehux$~\"3dity%_;4cjsz^+{5bkrA&=}6alqB*-[70mpC()]89noD'
+string2 = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/"
+
+tran = str.maketrans(string1,string2)
+enc = "|_r-+_Cl5;vgq_pdme7#7eC0="
+print(base64.b64decode(enc.translate(tran)))
+
+**六、玄盾杯**
+
+脱upx，去花，有些EBh还是什么E打头的和后面拼起来会形成一个奇怪的call，nop掉，有的时候跳转回到这个错误的指令的中间。得到一个迷宫，很快就能出。
 
 -->
     </div>

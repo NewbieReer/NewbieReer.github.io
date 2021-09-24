@@ -28,7 +28,7 @@
 <meta property="og:description" content="fffffffffffffffffffffffffff">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-19T10:16:00.000Z">
-<meta property="article:modified_time" content="2021-09-23T11:51:13.443Z">
+<meta property="article:modified_time" content="2021-09-23T15:56:56.064Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -227,7 +227,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-23 19:51:13" itemprop="dateModified" datetime="2021-09-23T19:51:13+08:00">2021-09-23</time>
+        <time title="Modified: 2021-09-23 23:56:56" itemprop="dateModified" datetime="2021-09-23T23:56:56+08:00">2021-09-23</time>
       </span>
 
   
@@ -420,6 +420,76 @@ print(base64.b64decode(enc.translate(tran)))
 **六、玄盾杯**
 
 脱upx，去花，有些EBh还是什么E打头的和后面拼起来会形成一个奇怪的call，nop掉，有的时候跳转回到这个错误的指令的中间。得到一个迷宫，很快就能出。
+
+**七、天津垓**
+
+解法一、
+a = "Rising_Hopper!"
+b = [17,8,6,10,15,20,42,59,47,3,47,4,16,72,62,0,7,16]
+for i in range(18):
+    for j in range(33,128):
+        if ((~(j&ord(a[i%14])))&(j|ord(a[i%14]))==b[i]):
+            print(chr(j),end='')
+
+这里是没什么值得学习的爆破
+
+解法二、
+a = "Rising_Hopper!"
+b = [17,8,6,10,15,20,42,59,47,3,47,4,16,72,62,0,7,16]
+for i in range(len(b)):
+    print(chr(b[i]^ord(a[i%14])),end='')
+print()
+
+这里是值得学习的逻辑运算法则，参考资料见下：
+
+https://zhuanlan.zhihu.com/p/385755926
+
+https://zhidao.baidu.com/question/1372229323357112459.html
+
+解法三、
+from z3 import *
+Str = [BitVec('s%d'%i,8) for i in range(18)]
+solver = Solver()
+for i in range(0, 17):
+    solver.add(And(Str[i]>=32,Str[i]<=0x7e))
+key = 'Rising_Hopper'
+v1 = [17,8,6,10,15,20,42,59,47,3,47,4,16,72,62,0,7,16]
+v7 = "Rising_Hopper!"
+for i in range(0,18):
+    tmp1 = ~(Str[i] & ord(v7[i % 14]))
+    tmp2 = Str[i] | ord(v7[i % 14])
+    solver.add(tmp1 & tmp2 == v1[i])
+if solver.check() == sat:
+    result = solver.model()
+    for i in range(18):
+        print(chr(result[Str[i]].as_long()),end = '')        #这里是值得学习的z3顺序输出方法
+    print()
+
+**八、 QCTF babymips**
+
+flag1 = list(map(ord,'Q|j{g'))
+flag2 = [ 0x52, 0xFD, 0x16, 0xA4, 0x89, 0xBD, 0x92, 0x80, 0x13, 0x41, \
+  0x54, 0xA0, 0x8D, 0x45, 0x18, 0x81, 0xDE, 0xFC, 0x95, 0xF0, \
+  0x16, 0x79, 0x1A, 0x15, 0x5B, 0x75, 0x1F]
+def dec1(a):
+    flag_dec = []
+    for i in range(32):
+        flag_dec.append(a[i]^(32-i))
+    return flag_dec
+def dec2(a):
+    flag_dec = []
+    k = 1
+    for i in a:
+        if(k %2 == 1):
+            flag_dec.append(((i<<2)|(i>>6))&0xff)
+        else:
+            flag_dec.append(((i>>2)|(i<<6))&0xff)
+        k += 1
+    return flag_dec
+print(''.join(map(chr,dec1(flag1+dec2(flag2)))))
+
+
+
 
 -->
     </div>

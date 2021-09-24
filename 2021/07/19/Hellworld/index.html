@@ -28,7 +28,7 @@
 <meta property="og:description" content="fffffffffffffffffffffffffff">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-19T10:16:00.000Z">
-<meta property="article:modified_time" content="2021-09-23T15:56:56.064Z">
+<meta property="article:modified_time" content="2021-09-24T16:37:12.503Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -227,7 +227,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-23 23:56:56" itemprop="dateModified" datetime="2021-09-23T23:56:56+08:00">2021-09-23</time>
+        <time title="Modified: 2021-09-25 00:37:12" itemprop="dateModified" datetime="2021-09-25T00:37:12+08:00">2021-09-25</time>
       </span>
 
   
@@ -488,7 +488,91 @@ def dec2(a):
     return flag_dec
 print(''.join(map(chr,dec1(flag1+dec2(flag2)))))
 
+**九、[SCTF2019]Who is he**
 
+说明1：
+dnspy 点进去CreateDecryptor，一直往上翻，可以看到加密模式
+namespace System.Security.Cryptography
+{
+  // Token: 0x02000538 RID: 1336
+  [ComVisible(true)]
+  public abstract class SymmetricAlgorithm : IDisposable
+  {
+​    // Token: 0x060030DE RID: 12510 RVA: 0x000A80D4 File Offset: 0x000A62D4
+​    protected SymmetricAlgorithm()
+​    {
+​      this.ModeValue = CipherMode.CBC;
+​      this.PaddingValue = PaddingMode.PKCS7;
+​      this.m_disposed = false;
+​    }
+
+说明2：
+.net程序用的编码方式是unicode，每个字符后面都要加\x00的
+
+说明3：
+本题在程序运行的时候更改了内存，可用CE搜
+
+from Crypto.Cipher import DES
+import base64
+
+l = [0x78 ,0x5A ,0x57 ,0x44 ,0x5A ,0x61 ,0x4B ,0x45 ,0x68 ,0x57 ,0x4E ,0x4D ,0x43 ,0x62 ,0x69 ,0x47 ,0x59 ,0x50 ,0x42 ,0x49 ,0x6C ,0x59 ,0x33 ,0x2B ,0x61 ,0x72 ,0x6F ,0x7A ,0x4F ,0x39 ,0x7A ,0x6F ,0x6E ,0x77 ,0x72 ,0x59 ,0x4C ,0x69 ,0x56 ,0x4C ,0x34 ,0x6E ,0x6A ,0x53 ,0x65 ,0x7A ,0x32 ,0x52 ,0x59 ,0x4D ,0x32 ,0x57 ,0x77 ,0x73 ,0x47 ,0x6E ,0x73 ,0x6E ,0x6A ,0x43 ,0x44 ,0x6E ,0x48 ,0x73 ,0x37 ,0x4E ,0x34 ,0x33 ,0x61 ,0x46 ,0x76 ,0x4E ,0x45 ,0x35 ,0x34 ,0x6E ,0x6F ,0x53 ,0x61 ,0x64 ,0x50 ,0x39 ,0x46 ,0x38 ,0x65 ,0x45 ,0x70 ,0x76 ,0x54 ,0x73 ,0x35 ,0x51 ,0x50 ,0x47 ,0x2B ,0x4B ,0x4C ,0x30 ,0x54 ,0x44 ,0x45 ,0x2F ,0x34 ,0x30 ,0x6E ,0x62 ,0x55 ,0x3D]
+
+encrypted_data = '1Tsy0ZGotyMinSpxqYzVBWnfMdUcqCMLu0MA+22Jnp+MNwLHvYuFToxRQr0c+ONZc6Q7L0EAmzbycqobZHh4H23U4WDTNmmXwusW4E+SZjygsntGkO2sGA=='
+encrypted_data = bytes(l)
+key = b'1\x002\x003\x004\x00'
+key = b't\x00e\x00s\x00t\x00'
+generator = DES.new(key,DES.MODE_CBC,key)
+res = generator.decrypt(base64.b64decode(encrypted_data))
+print(res.decode("utf-16"))
+
+**十、[FlareOn1]5get_it**
+
+关于windows注册表
+
+* 根键    注册表被划分为根键的5个顶层节
+  * HKEY_LOCAL_MACHINE (HKLM)    保存对本地机器的全局设置
+  * HKEY_CURRENT_USER (HKCU)   保存当前用户的特定的设置
+  * HKEY_CLASSES_ROOT  保存定义的类型信息
+  * HKEY_CURRENT_CONFIG   保存关于当前硬件配置的设置，特别是与当前和标准配置之间的不同部分
+  * HKEY_USERS   定义默认用户、新用户和当前用户的配置
+* 子键   一个子键就像是一个文件夹的子文件夹
+* 键  一个键是一个注册表中的文件夹，它可以包含额外的文件夹或键值。
+* 值项  一个值项是一个配对的名字和值
+* 值或数据   值或数据是储存在注册表项中的数据。
+
+两个最常用的根键是HKLM和HKCU。
+向run子键写入项，是设置程序自启动的方法。Autoruns工具会检查注册表25~30个位置，来找到被设计成自动运行的代码。
+常用函数：
+**RegOpenKeyEx**   打开一个注册表进行编辑和查询。返回值为0成功
+
+**RegSetValueEx**   添加一个新值到注册表，并设置它的数值。
+
+**RegGetValue**   返回注册表中的一个值项的数指
+
+**RegQueryValueExA**   检索与打开的注册表项关联的指定值名称的类型和数据。
+
+**RegCreateKeyA**   创建指定的注册表项。如果注册表中已存在该键，则该函数会打开它。
+
+本题用到的一些api
+
+**GetModuleHandleExA**  检索指定模块句柄并增加模块引用计数
+
+**GetModuleFileNameA**  检索包含指定模块的文件的完全限定路径。该模块必须已被当前进程加载。
+
+**GetAsyncKeyState **  确定在调用函数时键是向上还是向下，以及在上一次调用**GetAsyncKeyState**后是否按下了键
+
+具体解法请见s0uthwood师傅的博客，补充的是走进case分支之后总是眼花走错，所以可以把对应的函数重命名一下。
+
+**十一、[FlareOn2]starter**
+
+flag = [0x1F, 0x08, 0x13, 0x13, 0x04, 0x22, 0x0E, 0x11, 0x4D, 0x0D, \
+0x18, 0x3D, 0x1B, 0x11, 0x1C, 0x0F, 0x18, 0x50, 0x12, 0x13, \
+0x53, 0x1E, 0x12, 0x10]
+print(''.join(map(lambda x:chr(x^0x7D),flag)))
+
+**十二、[FlareOn2]elife**
+
+见s0uthwood师傅博客
 
 
 -->

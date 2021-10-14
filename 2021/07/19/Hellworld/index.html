@@ -29,7 +29,7 @@
 <meta property="og:description" content="fffffffffffffffffffffffffff">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2021-07-19T10:16:00.000Z">
-<meta property="article:modified_time" content="2021-10-12T12:17:46.393Z">
+<meta property="article:modified_time" content="2021-10-14T15:45:34.119Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -252,7 +252,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-12 20:17:46" itemprop="dateModified" datetime="2021-10-12T20:17:46+08:00">2021-10-12</time>
+        <time title="Modified: 2021-10-14 23:45:34" itemprop="dateModified" datetime="2021-10-14T23:45:34+08:00">2021-10-14</time>
       </span>
 
   
@@ -647,9 +647,25 @@ for i in range(0,1000):
 p.interactive()
 #flag{Y0U_ar3_The_k1ng_0f_pig_bra1n!}
 
-**十九、突然通知要开题，裂开，剩下的之后发**
+**十九、绿城杯RE**
 
--->
+本来还想用angr做，但发现跑不出来。然后胡师傅和我说用联合体做的（因为这个题的浮点数部分后面一半置零了，应该是丢失了很多精度，所以要与0xffffffff00000000）。用一个精度比较高的二元一次方程求解器（网上找的），就可以获得足够精度的答案了。然后写进C语言，再注意下大小端的转换，就能得到答案了。
+
+**二十、羊城杯baby smc**
+
+第一次见到这种不仅换表，而且换表之后好轮番异或的base64加密方式。这个smc动态调试就可以，调试到合适的位置，undefiend再建立函数就可以了。
+
+**二十一、[SUCTF2018]babyre**
+
+当我想反解的时候忘记了这个世界上有个东西叫爆破。
+
+**二十二、Deltx**
+
+这个题目使用动调可以看出它布尔运算经过了混淆，待解决的是使用静态分析看出如何实现的。
+
+
+
+--> 
     </div>
 
     

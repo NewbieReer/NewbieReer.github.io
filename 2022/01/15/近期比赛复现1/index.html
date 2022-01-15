@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<script src="https://cdn.jsdelivr.net/npm/pjax@0.2.8/pjax.js"></script>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 5.4.0">
+
+
+  <link rel="apple-touch-icon" sizes="180x180" href="/images/apple-touch-icon-next.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/images/favicon-32x32-next.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/images/favicon-16x16-next.png">
+  <link rel="mask-icon" href="/images/logo.svg" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@5.15.3/css/all.min.css" integrity="sha256-2H3fkXt6FEmrReK448mDVGKb3WW2ZZw35gI7vqHOE4Y=" crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
+
+<script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
+<meta name="description" content="近期比赛复现2022-1-15">
+<meta property="og:type" content="article">
+<meta property="og:title" content="近期比赛复现1">
+<meta property="og:url" content="http://example.com/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/index.html">
+<meta property="og:site_name" content="NewbieReer&#39;s blog">
+<meta property="og:description" content="近期比赛复现2022-1-15">
+<meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/recentCTF1/image-20220115095620849.png">
+<meta property="og:image" content="http://example.com/images/recentCTF1/image-20220115100051115.png">
+<meta property="og:image" content="http://example.com/images/recentCTF1/image-20220115100502369.png">
+<meta property="article:published_time" content="2022-01-15T00:34:15.694Z">
+<meta property="article:modified_time" content="2022-01-15T07:03:37.757Z">
+<meta property="article:author" content="NewbieReer">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/recentCTF1/image-20220115095620849.png">
+
+
+<link rel="canonical" href="http://example.com/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/">
+
+
+
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/","path":"2022/01/15/近期比赛复现1/","title":"近期比赛复现1"}</script>
+
+<script class="next-config" data-name="calendar" type="application/json">""</script>
+<title>近期比赛复现1 | NewbieReer's blog</title>
+  
+
+
+
+
+  <noscript>
+    <link rel="stylesheet" href="/css/noscript.css">
+  </noscript>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" class="use-motion">
+  <div class="headband"></div>
+
+  <main class="main">
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="Toggle navigation bar" role="button">
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+        <span class="toggle-line"></span>
+    </div>
+  </div>
+
+  <div class="site-meta">
+
+    <a href="/" class="brand" rel="start">
+      <i class="logo-line"></i>
+      <h1 class="site-title">NewbieReer's blog</h1>
+      <i class="logo-line"></i>
+    </a>
+  </div>
+
+  <div class="site-nav-right">
+    <div class="toggle popup-trigger">
+    </div>
+  </div>
+</div>
+
+
+
+<nav class="site-nav">
+  <ul class="main-menu menu">
+        <li class="menu-item menu-item-home"><a href="/" rel="section"><i class="home fa-fw"></i>Home</a></li>
+        <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>About</a></li>
+        <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags<span class="badge">0</span></a></li>
+        <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories<span class="badge">0</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">10</span></a></li>
+  </ul>
+</nav>
+
+
+
+
+</div>
+        
+  
+  <div class="toggle sidebar-toggle" role="button">
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+    <span class="toggle-line"></span>
+  </div>
+
+  <aside class="sidebar">
+
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
+      <!-- require APlayer -->
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
+      <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
+      <!-- require MetingJS-->
+      <script src="https://cdn.jsdelivr.net/npm/meting@2.0.1/dist/Meting.min.js"></script> 
+      <!--������playlist������ַ-->   
+
+
+      <ul class="sidebar-nav">
+        <li class="sidebar-nav-toc">
+          Table of Contents
+        </li>
+        <li class="sidebar-nav-overview">
+          Overview
+        </li>
+      </ul>
+
+      <div class="sidebar-panel-container">
+        <!--noindex-->
+        <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B0"><span class="nav-text">近期比赛复现</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E6%9C%B4%E5%AE%9E%E6%97%A0%E5%8D%8E%E7%9A%84%E5%8F%96%E8%AF%81-%E9%95%BF%E5%AE%89%E6%88%98%E7%96%AB"><span class="nav-text">朴实无华的取证 [长安战疫]</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#lemon"><span class="nav-text">lemon</span></a></li></ol></li></ol></div>
+        </div>
+        <!--/noindex-->
+
+        <div class="site-overview-wrap sidebar-panel">
+          <div class="site-overview">
+            <div class="site-author site-overview-item animated" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="NewbieReer"
+      src="/images/touxiang.jpg">
+  <p class="site-author-name" itemprop="name">NewbieReer</p>
+  <div class="site-description" itemprop="description">一篇诗，一斗酒，一曲长歌，一剑天涯</div>
+</div>
+<div class="site-state-wrap site-overview-item animated">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">10</span>
+          <span class="site-state-item-name">posts</span>
+        </a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author site-overview-item animated">
+      <span class="links-of-author-item">
+        <a href="https://psyduck0409.github.io/" title="DaiDai → https:&#x2F;&#x2F;psyduck0409.github.io&#x2F;" rel="noopener" target="_blank">DaiDai</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="http://justloseit.top/" title="Joker → http:&#x2F;&#x2F;justloseit.top&#x2F;" rel="noopener" target="_blank">Joker</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://s0uthwood.github.io/" title="s0uthwood&#39;s Blog → https:&#x2F;&#x2F;s0uthwood.github.io&#x2F;" rel="noopener" target="_blank">s0uthwood's Blog</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://kfxp12138.github.io/" title="triplewings → https:&#x2F;&#x2F;kfxp12138.github.io&#x2F;" rel="noopener" target="_blank">triplewings</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://fyhssgss.github.io/" title="ssgss → https:&#x2F;&#x2F;fyhssgss.github.io&#x2F;" rel="noopener" target="_blank">ssgss</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="https://xz1548.github.io/" title="xz1548 → https:&#x2F;&#x2F;xz1548.github.io&#x2F;" rel="noopener" target="_blank">xz1548</a>
+      </span>
+  </div>
+
+
+
+          </div>
+        </div>
+      </div>
+      <meting-js
+          style="display: none"
+          server="netease"
+          type="playlist" 
+          id="6987135743"
+          mini="true"
+          fixed="false"
+          list-folded="false"
+          autoplay="true"
+          volume="0.2"
+          theme="#FADFA3"
+          order="random"
+          loop="all"
+          preload="auto"
+          mutex="true">
+      </meting-js>
+    </div>
+  </aside>
+  <div class="sidebar-dimmer"></div>
+
+
+    </header>
+
+    
+  <div class="back-to-top" role="button" aria-label="Back to top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+<noscript>
+  <div class="noscript-warning">Theme NexT works best with JavaScript enabled</div>
+</noscript>
+
+
+    <div class="main-inner post posts-expand">
+
+
+  
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="NewbieReer">
+      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NewbieReer's blog">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          近期比赛复现1
+        </h1>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-01-15 08:34:15 / Modified: 15:03:37" itemprop="dateCreated datePublished" datetime="2022-01-15T08:34:15+08:00">2022-01-15</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="近期比赛复现"><a href="#近期比赛复现" class="headerlink" title="近期比赛复现"></a>近期比赛复现</h1><p>2022-1-15</p>
+<span id="more"></span>
+
+<h2 id="朴实无华的取证-长安战疫"><a href="#朴实无华的取证-长安战疫" class="headerlink" title="朴实无华的取证 [长安战疫]"></a>朴实无华的取证 [长安战疫]</h2><p>这道题主要用来学习volatility的用法，以及一些做misc的套路</p>
+<p>github上面的volatility一直安装不上，同学推荐VolatilityWorkbench，奈何不会用~</p>
+<p>于是我找到了独立版的Volatility，就在这里下载，就能快乐的用volatility啦！</p>
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw imageinfo    识别操作系统</li>
+</ul>
+<figure class="highlight apache"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="attribute">INFO</span>    : volatility.debug    : Determining profile based <span class="literal">on</span> KDBG search...</span><br><span class="line">          <span class="attribute">Suggested</span> Profile(s) : WinXPSP<span class="number">2</span>x<span class="number">86</span>, WinXPSP<span class="number">3</span>x<span class="number">86</span> (Instantiated with WinXPSP<span class="number">2</span>x<span class="number">86</span>)</span><br><span class="line">                     <span class="attribute">AS</span> Layer<span class="number">1</span> : IA<span class="number">32</span>PagedMemoryPae (Kernel AS)</span><br><span class="line">                     <span class="attribute">AS</span> Layer<span class="number">2</span> : FileAddressSpace (/mnt/c/Users/<span class="number">42914</span>/Desktop/ctf/misc/volatility_<span class="number">2</span>.<span class="number">5</span>.linux.standalone/volatility_<span class="number">2</span>.<span class="number">5</span>.linux.standalone/xp_sp<span class="number">3</span>.raw)</span><br><span class="line">                      <span class="attribute">PAE</span> type : PAE</span><br><span class="line">                           <span class="attribute">DTB</span> : <span class="number">0</span>x<span class="number">764000</span>L</span><br><span class="line">                          <span class="attribute">KDBG</span> : <span class="number">0</span>x<span class="number">8054</span>e<span class="number">2</span>e<span class="number">0</span>L</span><br><span class="line">          <span class="attribute">Number</span> of Processors : <span class="number">2</span></span><br><span class="line">     <span class="attribute">Image</span> Type (Service Pack) : <span class="number">3</span></span><br><span class="line">                <span class="attribute">KPCR</span> for CPU <span class="number">0</span> : <span class="number">0</span>xffdff<span class="number">000</span>L</span><br><span class="line">                <span class="attribute">KPCR</span> for CPU <span class="number">1</span> : <span class="number">0</span>xf<span class="number">8757000</span>L</span><br><span class="line">             <span class="attribute">KUSER_SHARED_DATA</span> : <span class="number">0</span>xffdf<span class="number">0000</span>L</span><br><span class="line">           <span class="attribute">Image</span> date and time : <span class="number">2021</span>-<span class="number">12</span>-<span class="number">27</span> <span class="number">02</span>:<span class="number">37</span>:<span class="number">41</span> UTC+<span class="number">0000</span></span><br><span class="line">     <span class="attribute">Image</span> local date and time : <span class="number">2021</span>-<span class="number">12</span>-<span class="number">27</span> <span class="number">10</span>:<span class="number">37</span>:<span class="number">41</span> +<span class="number">0800</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 pslist</li>
+</ul>
+<p>profile指定操作系统，pslist列出进程</p>
+<figure class="highlight subunit"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">Offset(V)  Name                    PID   PPID   Thds     Hnds   Sess  Wow64 Start                          Exit</span><br><span class="line">---------- -------------------- ------ ------ ------ -------- ------ ------ ------------------------------ ------------------------------</span><br><span class="line">0x8214fa00 System                    4      0     56      364 ------      0</span><br><span class="line">0x81cfe778 smss.exe                588      4      3       19 ------      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:12 UTC<span class="string">+0000</span></span><br><span class="line">0x81b39da0 csrss.exe               636    588     12      841      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81ffb020 winlogon.exe            668    588     23      526      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b3bbf0 services.exe            712    668     15      308      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81c80478 lsass.exe               724    668     21      360      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b27370 vmacthlp.exe            908    712      1       25      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b3da70 svchost.exe             924    712     17      205      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x82076b18 svchost.exe             988    712     10      296      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81f228b8 svchost.exe            1084    712     72     1491      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b11450 svchost.exe            1176    712      6       93      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b4eda0 Pinyin_2345Svc.        1196    712     17      367      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:13 UTC<span class="string">+0000</span></span><br><span class="line">0x81b70be8 svchost.exe            1312    712      3      103      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81f5b440 Protect_2345Exp        1324    712     11      335      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81f06da0 Pic_2345Svc.exe        1368    712     26      432      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81b1c620 ZhuDongFangYu.e        1508    712     19      235      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81bae4b0 spoolsv.exe            1764    712     10      136      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81b1eda0 explorer.exe           1904   1820     33      980      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:14 UTC<span class="string">+0000</span></span><br><span class="line">0x81bf7748 2345PinyinCloud        2016   1904     21      390      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:15 UTC<span class="string">+0000</span></span><br><span class="line">0x81b62c20 FaceTool_2345Pi         304   2016     12      230      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:16 UTC<span class="string">+0000</span></span><br><span class="line">0x81c1a020 360tray.exe             916   1904    158     1704      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:18 UTC<span class="string">+0000</span></span><br><span class="line">0x81bdd9b8 vmtoolsd.exe            944   1904     10      345      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:18 UTC<span class="string">+0000</span></span><br><span class="line">0x81c7cc80 ctfmon.exe              932   1904      6      180      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:18 UTC<span class="string">+0000</span></span><br><span class="line">0x81b5ada0 2345PinyinUpdat        1052   1196      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:18 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 00:58:08 UTC<span class="string">+0000</span></span><br><span class="line">0x81d78770 TsBrowserSvr.ex        2856    712     12      217      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:40 UTC<span class="string">+0000</span></span><br><span class="line">0x81d29670 VGAuthService.e        2916    712      2       60      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:40 UTC<span class="string">+0000</span></span><br><span class="line">0x81c215c8 vmtoolsd.exe           3420    712      7      273      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:52 UTC<span class="string">+0000</span></span><br><span class="line">0x81f09750 alg.exe                3820    712      5      104      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:53 UTC<span class="string">+0000</span></span><br><span class="line">0x81a18768 wmiprvse.exe           3844    924     13      302      0      0 2021<span class="string">-12</span><span class="string">-27</span> 00:51:53 UTC<span class="string">+0000</span></span><br><span class="line">0x819ad580 360bdoctor.exe         2832    916      9      262      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:02:55 UTC<span class="string">+0000</span></span><br><span class="line">0x819a78f8 360seupdate.exe         440   2832      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:02:55 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 01:02:56 UTC<span class="string">+0000</span></span><br><span class="line">0x819b45f8 sesvc.exe              3920   2832      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:02:56 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 01:02:56 UTC<span class="string">+0000</span></span><br><span class="line">0x81c47308 svchost.exe            3488    712      5      128      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:40:27 UTC<span class="string">+0000</span></span><br><span class="line">0x81fd27e8 softupnotify.ex        2936    916      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:40:40 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 01:40:40 UTC<span class="string">+0000</span></span><br><span class="line">0x819b0970 mspaint.exe            3888   1904      9      258      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:37 UTC<span class="string">+0000</span></span><br><span class="line">0x81a08da0 conime.exe             3260   2124      9      183      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:47 UTC<span class="string">+0000</span></span><br><span class="line">0x81d68a50 IEXPLORE.EXE           3748   1904     21      578      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:52 UTC<span class="string">+0000</span></span><br><span class="line">0x819d6a18 wdswfsafe.exe          2136    916      4       70      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:52 UTC<span class="string">+0000</span></span><br><span class="line">0x819c98a0 softupnotify.ex         884    916      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:52 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 01:44:52 UTC<span class="string">+0000</span></span><br><span class="line">0x81c2b2f0 IEXPLORE.EXE           3976   3748     37     1374      0      0 2021<span class="string">-12</span><span class="string">-27</span> 01:44:52 UTC<span class="string">+0000</span></span><br><span class="line">0x819b23b0 softupnotify.ex        1916    916      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:00:18 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 02:00:18 UTC<span class="string">+0000</span></span><br><span class="line">0x81c33630 softupnotify.ex         972    916      0 --------      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:03:28 UTC<span class="string">+0000</span>   2021<span class="string">-12</span><span class="string">-27</span> 02:03:28 UTC<span class="string">+0000</span></span><br><span class="line">0x81f2c7e0 notepad.exe            2976   1904      6      180      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:27:06 UTC<span class="string">+0000</span></span><br><span class="line">0x81c7f630 360zip.exe             3388   1904     10      366      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:28:39 UTC<span class="string">+0000</span></span><br><span class="line">0x81d4d020 2345PicViewer.e        3812   1904     23      378      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:36:41 UTC<span class="string">+0000</span></span><br><span class="line">0x81923020 taskmgr.exe            3628    668      9      188      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:37:11 UTC<span class="string">+0000</span></span><br><span class="line">0x81c30da0 DumpIt.exe             3300   1904      1       16      0      0 2021<span class="string">-12</span><span class="string">-27</span> 02:37:38 UTC<span class="string">+0000</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 filescan | grep txt</li>
+</ul>
+<p>找出文件里有txt字样的文件</p>
+<figure class="highlight taggerscript"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br></pre></td><td class="code"><pre><span class="line">0x0000000001b301c0      1      0 RW-r-- <span class="symbol">\D</span>evice<span class="symbol">\H</span>arddiskVolume1<span class="symbol">\D</span>ocuments and Settings<span class="symbol">\A</span>dministrator<span class="symbol">\桌</span>面<span class="symbol">\我</span>的日记.txt.txt</span><br><span class="line">0x0000000001b413d8      4      2 -W-rw- <span class="symbol">\D</span>evice<span class="symbol">\H</span>arddiskVolume1<span class="symbol">\D</span>ocuments and Settings<span class="symbol">\A</span>ll Users<span class="symbol">\A</span>pplication Data<span class="symbol">\V</span>Mware<span class="symbol">\V</span>Mware VGAuth<span class="symbol">\l</span>ogfile.txt.0</span><br><span class="line">0x0000000001c29db0      1      1 RW-r-- <span class="symbol">\D</span>evice<span class="symbol">\H</span>arddiskVolume1<span class="symbol">\W</span>INDOWS<span class="symbol">\s</span>ystem32<span class="symbol">\h</span>323log.txt</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 dumpfiles -Q 0x0000000001b301c0 -D ./</li>
+</ul>
+<p>转储文件-D ./输出到当前文件夹下。-Q 是文件的偏移，见filescan第一个字段</p>
+<p><img src="/images/recentCTF1/image-20220115095620849.png" alt="image-20220115095620849"></p>
+<p>看到密码是20211209</p>
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 filescan | grep flag</li>
+</ul>
+<p>找出文件里有flag字样的文件</p>
+<p><img src="/images/recentCTF1/image-20220115100051115.png" alt="image-20220115100051115"></p>
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 dumpfiles -Q 0x00000000017ad6a8 -D ./</li>
+</ul>
+<p>转储zip结果：</p>
+<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">//幼儿园水平的加密（部分）</span></span><br><span class="line"><span class="function"><span class="keyword">void</span> <span class="title">Encrypt</span><span class="params">(<span class="built_in">string</span>&amp; str)</span></span></span><br><span class="line"><span class="function"></span>&#123;</span><br><span class="line">	<span class="keyword">for</span>(<span class="keyword">int</span> i = <span class="number">0</span>; i &lt; str.length(); i++)</span><br><span class="line">	&#123;</span><br><span class="line">		<span class="keyword">if</span>(str[i] &gt;=<span class="string">&#x27;a&#x27;</span>&amp;&amp; str[i]&lt;=<span class="string">&#x27;w&#x27;</span>)</span><br><span class="line">			str[i]+=<span class="number">3</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">&#x27;x&#x27;</span>)</span><br><span class="line">			str[i]=<span class="string">&#x27;a&#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">&#x27;y&#x27;</span>)</span><br><span class="line">			str[i]=<span class="string">&#x27;b&#x27;</span>;</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">&#x27;z&#x27;</span>)</span><br><span class="line">			str[i]=<span class="string">&#x27;c&#x27;</span>;	</span><br><span class="line">		<span class="keyword">else</span> <span class="keyword">if</span>(str[i]==<span class="string">&#x27;_&#x27;</span>)</span><br><span class="line">			str[i]=<span class="string">&#x27;|&#x27;</span>;</span><br><span class="line">		str[i] -= <span class="number">32</span>;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>./volatility_2.5_linux_x64 -f xp_sp3.raw –profile=WinXPSP3x86 dumpfiles -Q 0x0000000001e65028-D ./</li>
+</ul>
+<p>转储png结果</p>
+<p><img src="/images/recentCTF1/image-20220115100502369.png" alt="image-20220115100502369"></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line">enc = <span class="string">&#x27;FDCB[8LDQ?ZLOO?FHUWDLQOB?VXFFHHG?LQ?ILJKWLQJ?WKH?HSLGHPLF]&#x27;</span></span><br><span class="line">enc1 = <span class="string">&#x27;&#x27;</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc:</span><br><span class="line">    enc1 += <span class="built_in">chr</span>(<span class="built_in">ord</span>(i)+<span class="number">32</span>)</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(enc1)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> enc1:</span><br><span class="line">    <span class="keyword">if</span>(<span class="number">97</span>&lt;=<span class="built_in">ord</span>(i) <span class="keyword">and</span> <span class="built_in">ord</span>(i)&lt;=<span class="number">122</span>):</span><br><span class="line">    	<span class="built_in">print</span>(<span class="built_in">chr</span>((<span class="built_in">ord</span>(i)-<span class="number">3</span> -<span class="number">97</span>)%<span class="number">26</span> + <span class="number">97</span>),end=<span class="string">&#x27;&#x27;</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="built_in">print</span>(i,end=<span class="string">&#x27;&#x27;</span>)</span><br></pre></td></tr></table></figure>
+
+
+<h2 id="lemon"><a href="#lemon" class="headerlink" title="lemon"></a>lemon</h2><p>赛后补s0师傅拿一血的题~</p>
+<figure class="highlight js"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">var</span> a = [<span class="number">65</span>, <span class="number">69</span>, <span class="number">83</span>];</span><br><span class="line"><span class="keyword">var</span> b = [<span class="number">113</span>, <span class="number">105</span>, <span class="number">117</span>, <span class="number">113</span>, <span class="number">105</span>, <span class="number">117</span>, <span class="number">108</span>, <span class="number">101</span>, <span class="number">98</span>, <span class="number">105</span>, <span class="number">101</span>, <span class="number">122</span>, <span class="number">117</span>, <span class="number">111</span>, <span class="number">108</span>, <span class="number">101</span>];</span><br><span class="line"><span class="keyword">var</span> c = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> d =[];</span><br><span class="line"><span class="keyword">while</span> (c &lt; <span class="number">256</span>)&#123;</span><br><span class="line">	d.append(c);</span><br><span class="line">    	c = c + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"><span class="keyword">var</span> e = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (e &lt; <span class="number">256</span>)&#123;</span><br><span class="line">    d[e] = (d[e] + a[e % <span class="number">3</span>]+b[e%<span class="number">16</span>])%<span class="number">256</span>;</span><br><span class="line">    e = e + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="keyword">var</span> f = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (f &lt; <span class="number">3</span>)&#123;</span><br><span class="line">    <span class="keyword">var</span> g = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span>(g&lt;<span class="number">256</span>)&#123;</span><br><span class="line">        d[g] = d[g] ^ d[(g + <span class="number">1</span>)%<span class="number">256</span>];</span><br><span class="line">        g = g + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">var</span> h = <span class="number">0</span>;</span><br><span class="line">    <span class="keyword">while</span> (h &lt; <span class="number">256</span>)&#123;</span><br><span class="line">       d[h] =  (d[h] + <span class="number">1</span>) % <span class="number">256</span>;</span><br><span class="line">       h = h + <span class="number">1</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    f = f + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">f = <span class="number">0</span>;</span><br><span class="line"><span class="keyword">var</span> i = <span class="number">0</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">while</span> (f &lt; <span class="number">256</span>)&#123;</span><br><span class="line">    i = d[f] + i;</span><br><span class="line">    f = f + <span class="number">1</span>;</span><br><span class="line">&#125;</span><br><span class="line">i = i * <span class="number">20</span> + <span class="number">5</span>;</span><br><span class="line">i = i * <span class="number">30</span> - <span class="number">5</span>;</span><br><span class="line">i = i * <span class="number">40</span> - <span class="number">5</span>;</span><br><span class="line">i = i * <span class="number">50</span> + <span class="number">6645</span>;</span><br><span class="line">print(i);</span><br></pre></td></tr></table></figure>
+
+
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+
+        
+
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/01/05/%E5%BC%82%E5%B8%B8/" rel="prev" title="异常">
+                  <i class="fa fa-chevron-left"></i> 异常
+                </a>
+            </div>
+            <div class="post-nav-item">
+            </div>
+          </div>
+    </footer>
+  </article>
+</div>
+
+
+
+
+
+
+</div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-inner">
+
+
+<div class="copyright">
+  &copy; 
+  <span itemprop="copyrightYear">2022</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">NewbieReer</span>
+</div>
+  <div class="powered-by">Powered by <a href="https://hexo.io/" rel="noopener" target="_blank">Hexo</a> & <a href="https://theme-next.js.org/" rel="noopener" target="_blank">NexT.Gemini</a>
+  </div>
+
+    </div>
+  </footer>
+
+  
+  <script src="https://cdn.jsdelivr.net/npm/animejs@3.2.1/lib/anime.min.js" integrity="sha256-XL2inqUJaslATFnHdJOi9GfQ60on8Wx1C2H8DYiN1xY=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@next-theme/pjax@0.5.0/pjax.min.js" integrity="sha256-3NkoLDrmHLTYj7csHIZSr0MHAFTXth7Ua/DDt4MRUAg=" crossorigin="anonymous"></script>
+<script src="/js/comments.js"></script><script src="/js/utils.js"></script><script src="/js/motion.js"></script><script src="/js/next-boot.js"></script><script src="/js/pjax.js"></script>
+
+  
+
+
+
+
+  
+
+
+
+
+
+</body>
+</html>

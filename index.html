@@ -87,7 +87,7 @@
         <li class="menu-item menu-item-about"><a href="/about/" rel="section"><i class="user fa-fw"></i>About</a></li>
         <li class="menu-item menu-item-tags"><a href="/tags/" rel="section"><i class="tags fa-fw"></i>Tags<span class="badge">0</span></a></li>
         <li class="menu-item menu-item-categories"><a href="/categories/" rel="section"><i class="th fa-fw"></i>Categories<span class="badge">0</span></a></li>
-        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">9</span></a></li>
+        <li class="menu-item menu-item-archives"><a href="/archives/" rel="section"><i class="archive fa-fw"></i>Archives<span class="badge">11</span></a></li>
   </ul>
 </nav>
 
@@ -142,7 +142,7 @@
       <div class="site-state-item site-state-posts">
           <a href="/archives/">
         
-          <span class="site-state-item-count">9</span>
+          <span class="site-state-item-count">11</span>
           <span class="site-state-item-name">posts</span>
         </a>
       </div>
@@ -209,6 +209,79 @@
 
 
     <div class="main-inner index posts-expand">
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/20/angr_ctf/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="NewbieReer">
+      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NewbieReer's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/20/angr_ctf/" class="post-title-link" itemprop="url">日记</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+      
+
+      <time title="Created: 2022-01-20 15:18:40 / Modified: 22:30:16" itemprop="dateCreated datePublished" datetime="2022-01-20T15:18:40+08:00">2022-01-20</time>
+    </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="2021-1-20"><a href="#2021-1-20" class="headerlink" title="2021/1/20"></a>2021/1/20</h1><p>队霸加了群聊交流限制，只让发博客，导致今天心态有点小崩，影响了自己的学习。直到下午4点多也才做了angr_ctf的前三道题，那么，接下来继续做angr剩下的题目。</p>
+<p>比较有用的代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">if</span> simulation.found:</span><br><span class="line">    solution_state = simulation.found[<span class="number">0</span>]</span><br><span class="line">    solution0 = solution_state.se.<span class="built_in">eval</span>(password0,cast_to=<span class="built_in">bytes</span>)</span><br><span class="line"><span class="comment">#se.eval用来算解，cast_to=str将解变为字符串，bytes是字节码类型，str不行的时候试试bytes</span></span><br><span class="line">initial_state.stack_push()	<span class="comment">#将符号化变量压栈</span></span><br><span class="line">initial_state.memory.store()	<span class="comment">#将符号化变量存入内存</span></span><br></pre></td></tr></table></figure>
+
+<p>做到06的时候发现malloc出来，自己设置的falke_address不能设置成0x00啥的，得往大了设置，比如deadbeef或者0xffff…之类的</p>
+<p>第七题的代码有点讲究</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  filename = <span class="string">&#x27;OJKSQYDP.txt&#x27;</span> <span class="comment"># :string</span></span><br><span class="line">  symbolic_file_size_bytes = <span class="number">64</span></span><br><span class="line"></span><br><span class="line">  password = claripy.BVS(<span class="string">&#x27;password&#x27;</span>, symbolic_file_size_bytes * <span class="number">8</span>)</span><br><span class="line">  pwd_file = angr.storage.SimFile(filename, content=password, size=symbolic_file_size_bytes)</span><br><span class="line">  initial_state.fs.insert(filename,pwd_file) <span class="comment">#就用这个插入就行</span></span><br><span class="line">  simulation = project.factory.simgr(initial_state)</span><br><span class="line"><span class="comment">#起始的地址应该放在fopen上面开栈的位置，如下：</span></span><br><span class="line"><span class="comment">#sub 8			&lt;--放在这里就成</span></span><br><span class="line"><span class="comment">#push arg1</span></span><br><span class="line"><span class="comment">#push arg2</span></span><br></pre></td></tr></table></figure>
+
+<p>今天晚上就做到了第七题，hgame做了一个简单题，还有一个简单题一会应该能出。总的来说今天还是比较摸，明天有realworld打了，还挺不错的，希望今天也能按时睡觉，明天早点起床。</p>
+
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
 
     
 
@@ -338,6 +411,84 @@
           <!--noindex-->
             <div class="post-button">
               <a class="btn" href="/2022/01/05/%E5%BC%82%E5%B8%B8/#more" rel="contents">
+                Read more &raquo;
+              </a>
+            </div>
+          <!--/noindex-->
+        
+      
+    </div>
+
+    
+    
+    
+
+    <footer class="post-footer">
+        <div class="post-eof"></div>
+      
+    </footer>
+  </article>
+</div>
+
+
+
+
+    
+
+
+<div class="post-block">
+  
+  
+
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/02/unlink/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/images/touxiang.jpg">
+      <meta itemprop="name" content="NewbieReer">
+      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="NewbieReer's blog">
+    </span>
+      <header class="post-header">
+        <h2 class="post-title" itemprop="name headline">
+          <a href="/2022/01/02/unlink/" class="post-title-link" itemprop="url">unlink</a>
+        </h2>
+
+        <div class="post-meta-container">
+          <div class="post-meta">
+    <span class="post-meta-item">
+      <span class="post-meta-item-icon">
+        <i class="far fa-calendar"></i>
+      </span>
+      <span class="post-meta-item-text">Posted on</span>
+
+      <time title="Created: 2022-01-02 04:06:13" itemprop="dateCreated datePublished" datetime="2022-01-02T04:06:13+08:00">2022-01-02</time>
+    </span>
+      <span class="post-meta-item">
+        <span class="post-meta-item-icon">
+          <i class="far fa-calendar-check"></i>
+        </span>
+        <span class="post-meta-item-text">Edited on</span>
+        <time title="Modified: 2022-01-04 13:25:15" itemprop="dateModified" datetime="2022-01-04T13:25:15+08:00">2022-01-04</time>
+      </span>
+
+  
+</div>
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+          <p>我是five，好久没更了。。看到b站上自己半年前学了但完全没学的unlink，感觉应该把坑填上了。。</p>
+          <!--noindex-->
+            <div class="post-button">
+              <a class="btn" href="/2022/01/02/unlink/#more" rel="contents">
                 Read more &raquo;
               </a>
             </div>
@@ -830,84 +981,9 @@
 
 
 
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/19/Hellworld/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/19/Hellworld/" class="post-title-link" itemprop="url">Fuck_World</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-19 18:16:00" itemprop="dateCreated datePublished" datetime="2021-07-19T18:16:00+08:00">2021-07-19</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-10-20 23:48:55" itemprop="dateModified" datetime="2021-10-20T23:48:55+08:00">2021-10-20</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>fffffffffffffffffffffffffff</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/19/Hellworld/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
+  <nav class="pagination">
+    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
+  </nav>
 
 </div>
   </main>

@@ -29,7 +29,7 @@
 <meta property="og:description" content="2021&#x2F;1&#x2F;20队霸加了群聊交流限制，只让发博客，导致今天心态有点小崩">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-20T07:18:40.348Z">
-<meta property="article:modified_time" content="2022-01-21T06:29:13.547Z">
+<meta property="article:modified_time" content="2022-01-21T13:58:45.223Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -253,7 +253,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-21 14:29:13" itemprop="dateModified" datetime="2022-01-21T14:29:13+08:00">2022-01-21</time>
+        <time title="Modified: 2022-01-21 21:58:45" itemprop="dateModified" datetime="2022-01-21T21:58:45+08:00">2022-01-21</time>
       </span>
 
   
@@ -292,7 +292,9 @@
 
 <p>上面这个代码key[2]、key[3]和key[0]、key[1]交换。而且去掉了异或的sum才是原始加密方式。</p>
 <p>想出去小溜达一会，angr晚点再补</p>
-<h2 id="晚上"><a href="#晚上" class="headerlink" title="晚上"></a>晚上</h2><p><font size="1000" color="white">我操他妈，今天继续问候某人母亲。</font></p>
+<h2 id="晚上"><a href="#晚上" class="headerlink" title="晚上"></a>晚上</h2><p>下午到晚上基本都在做hgame的re4，逆是逆明白了，解密脚本总是报错，我不知道咋做了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">v9 = [...]		<span class="comment">#自己填</span></span><br><span class="line">d4140 = [...]	<span class="comment">#自己填</span></span><br><span class="line">d4140 = [...]	<span class="comment">#自己填</span></span><br><span class="line"></span><br><span class="line">d4140_1 = []</span><br><span class="line">d8140_1 = []</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> d8140:</span><br><span class="line">    d8140_1.append(i//<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> d4140:</span><br><span class="line">    d4140_1.append(i//<span class="number">10</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">63</span>,<span class="number">0</span>,-<span class="number">1</span>):</span><br><span class="line">    tmp = v9[i]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">64</span>):</span><br><span class="line">        <span class="keyword">if</span>(i == j):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        tmp = (tmp - v9[j]*d8140_1[j*<span class="number">64</span>+i])%<span class="number">256</span></span><br><span class="line">    <span class="keyword">try</span>:</span><br><span class="line">        v9[i] = tmp//d8140_1[i*<span class="number">64</span>+i]</span><br><span class="line">    <span class="keyword">except</span>:</span><br><span class="line">        <span class="built_in">print</span>(i)</span><br><span class="line">        <span class="built_in">print</span>(j)</span><br><span class="line">        <span class="built_in">input</span>()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">63</span>,<span class="number">0</span>,-<span class="number">1</span>):</span><br><span class="line">    tmp = v9[i]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">64</span>):</span><br><span class="line">        <span class="keyword">if</span>(i == j):</span><br><span class="line">            <span class="keyword">continue</span></span><br><span class="line">        tmp = (tmp - v9[j]*d4140_1[j*<span class="number">64</span>+i])%<span class="number">256</span></span><br><span class="line">    v9[i] = tmp//d4140_1[i*<span class="number">64</span>+i]</span><br><span class="line"></span><br><span class="line"><span class="built_in">print</span>(<span class="string">&#x27;&#x27;</span>.join(<span class="built_in">map</span>(<span class="built_in">chr</span>,v9)))</span><br></pre></td></tr></table></figure>
+
 
     </div>
 

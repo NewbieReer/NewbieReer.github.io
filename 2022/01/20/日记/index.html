@@ -29,7 +29,7 @@
 <meta property="og:description" content="2021&#x2F;1&#x2F;20队霸加了群聊交流限制，只让发博客，导致今天心态有点小崩">
 <meta property="og:locale" content="en_US">
 <meta property="article:published_time" content="2022-01-20T07:18:40.348Z">
-<meta property="article:modified_time" content="2022-01-21T06:09:54.476Z">
+<meta property="article:modified_time" content="2022-01-21T06:10:35.671Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 
@@ -253,7 +253,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-21 14:09:54" itemprop="dateModified" datetime="2022-01-21T14:09:54+08:00">2022-01-21</time>
+        <time title="Modified: 2022-01-21 14:10:35" itemprop="dateModified" datetime="2022-01-21T14:10:35+08:00">2022-01-21</time>
       </span>
 
   
@@ -278,8 +278,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line">  filename = <span class="string">&#x27;OJKSQYDP.txt&#x27;</span> <span class="comment"># :string</span></span><br><span class="line">  symbolic_file_size_bytes = <span class="number">64</span></span><br><span class="line"></span><br><span class="line">  password = claripy.BVS(<span class="string">&#x27;password&#x27;</span>, symbolic_file_size_bytes * <span class="number">8</span>)</span><br><span class="line">  pwd_file = angr.storage.SimFile(filename, content=password, size=symbolic_file_size_bytes)</span><br><span class="line">  initial_state.fs.insert(filename,pwd_file) <span class="comment">#就用这个插入就行</span></span><br><span class="line">  simulation = project.factory.simgr(initial_state)</span><br><span class="line"><span class="comment">#起始的地址应该放在fopen上面开栈的位置，如下：</span></span><br><span class="line"><span class="comment">#sub 8			&lt;--放在这里就成</span></span><br><span class="line"><span class="comment">#push arg1</span></span><br><span class="line"><span class="comment">#push arg2</span></span><br></pre></td></tr></table></figure>
 
 <p>今天晚上就做到了第七题，hgame做了一个简单题，还有一个简单题一会应该能出。总的来说今天还是比较摸，明天有realworld打了，还挺不错的，希望今天也能按时睡觉，明天早点起床。</p>
-<h1 id="2021-1-21"><a href="#2021-1-21" class="headerlink" title="2021/1/21"></a>2021/1/21</h1><p><font size="1000" color="white">我操他妈，今天继续问候某人母亲。</font></p>
-<p>今天睡得出奇得多，基本上昨天11点到12点睡着的，今天11点才醒。订的闹钟是7点，可是自己关了闹钟却又去睡觉了。总结一下确保自己明天能早睡早起的关键：</p>
+<h1 id="2021-1-21"><a href="#2021-1-21" class="headerlink" title="2021/1/21"></a>2021/1/21</h1><p>今天睡得出奇得多，基本上昨天11点到12点睡着的，今天11点才醒。订的闹钟是7点，可是自己关了闹钟却又去睡觉了。总结一下确保自己明天能早睡早起的关键：</p>
 <ul>
 <li>前一天需要10点上床</li>
 <li>睡觉需要拉开窗帘，第二天让阳光自然地从窗户射入</li>
@@ -292,6 +291,7 @@
 <p>ToDo：补angr_ctf</p>
 <p>晚上</p>
 <hr>
+<p><font size="1000" color="white">我操他妈，今天继续问候某人母亲。</font></p>
 
     </div>
 

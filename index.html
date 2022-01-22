@@ -249,7 +249,7 @@
           <i class="far fa-calendar-check"></i>
         </span>
         <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-22 15:16:26" itemprop="dateModified" datetime="2022-01-22T15:16:26+08:00">2022-01-22</time>
+        <time title="Modified: 2022-01-22 22:07:06" itemprop="dateModified" datetime="2022-01-22T22:07:06+08:00">2022-01-22</time>
       </span>
 
   
@@ -298,7 +298,11 @@
 <p>一个是用z3的：</p>
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> numpy <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> z3 <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> libnum <span class="keyword">import</span> n2s</span><br><span class="line"></span><br><span class="line">a1 = array(d8140)</span><br><span class="line">a1 = mat(a1)    </span><br><span class="line">a1 = a1.reshape(<span class="number">64</span>,<span class="number">64</span>)</span><br><span class="line"></span><br><span class="line">a2 = array(d4140)</span><br><span class="line">a2 = mat(a2)</span><br><span class="line">a2 = a2.reshape(<span class="number">64</span>,<span class="number">64</span>)</span><br><span class="line"></span><br><span class="line">a3 = dot(a1,a2)</span><br><span class="line">a3 = a3.tolist()</span><br><span class="line">il = [Int(<span class="string">&quot;i%d&quot;</span>%i) <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>)]</span><br><span class="line">s = Solver()</span><br><span class="line"></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">64</span>):</span><br><span class="line">    tmp = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">0</span>,<span class="number">64</span>):</span><br><span class="line">        tmp += il[j] * a3[j][i]</span><br><span class="line">    s.add(tmp == v9[i])</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> s.check() == sat:</span><br><span class="line">    result = s.model()</span><br><span class="line">    k = <span class="string">b&#x27;&#x27;</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> <span class="built_in">range</span>(<span class="number">64</span>):</span><br><span class="line">        k+= n2s(result[il[i]].as_long())</span><br><span class="line">    <span class="built_in">print</span>(k)</span><br></pre></td></tr></table></figure>
 
-<p>下午准备做realworld。</p>
+<h2 id="下午-1"><a href="#下午-1" class="headerlink" title="下午"></a>下午</h2><p>下午准备做realworld。<br>下午的确做了realwrold，甚至还出去溜达了一圈。但是下午做realworld的时候注意力不是很集中，根据心流的说法啊，可能是这个题有些超乎自己所匹配的水平，但是就是在这种不断做难题的过程中，自己的水平才会提高，才容易和做的题目匹配，从而进入心流。</p>
+<p>下午还睡了一小会，不知道晚上能几点睡着、第二天还能不能早点醒。</p>
+<h2 id="晚上-1"><a href="#晚上-1" class="headerlink" title="晚上"></a>晚上</h2><p>现在是20:30，但是做题的时候仍不是很集中注意力，但是队友10点的时候可能需要我的逆向成果，而且明天自己还有别的比赛，需要抓紧尽量多的逆出来。</p>
+<p>关于逆向的结果，我会写队伍的文档里。</p>
+<p>关于虚拟机执行的部分逆得很乱，明天早上还有两个小时去逆，然后就要做hws的题目了。</p>
 
       
     </div>

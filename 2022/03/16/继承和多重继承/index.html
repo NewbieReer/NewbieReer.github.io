@@ -21,25 +21,34 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-<meta property="og:type" content="website">
-<meta property="og:title" content="NewbieReer&#39;s blog">
-<meta property="og:url" content="http://example.com/index.html">
+<meta name="description" content="继承识别类与类之间的关系这里附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。 当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数： 子类的成员函数： ​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。 子类的构造函数：        注：先 p">
+<meta property="og:type" content="article">
+<meta property="og:title" content="继承和多重继承">
+<meta property="og:url" content="http://example.com/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="NewbieReer&#39;s blog">
-<meta property="og:description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
+<meta property="og:description" content="继承识别类与类之间的关系这里附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。 当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数： 子类的成员函数： ​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。 子类的构造函数：        注：先 p">
 <meta property="og:locale" content="en_US">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210831140327245.png">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210916155258109.png">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918114232827.png">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918114328733.png">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918114718569.png">
+<meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918115710515.png">
+<meta property="article:published_time" content="2022-03-16T10:45:55.721Z">
+<meta property="article:modified_time" content="2022-03-16T10:49:41.942Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
+<meta name="twitter:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210831140327245.png">
 
 
-<link rel="canonical" href="http://example.com/">
+<link rel="canonical" href="http://example.com/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/">
 
 
 
-<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":true,"isPost":false,"lang":"en","comments":"","permalink":"","path":"index.html","title":""}</script>
+<script class="next-config" data-name="page" type="application/json">{"sidebar":"","isHome":false,"isPost":true,"lang":"en","comments":true,"permalink":"http://example.com/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/","path":"2022/03/16/继承和多重继承/","title":"继承和多重继承"}</script>
 
 <script class="next-config" data-name="calendar" type="application/json">""</script>
-<title>NewbieReer's blog</title>
+<title>继承和多重继承 | NewbieReer's blog</title>
   
 
 
@@ -105,7 +114,7 @@
 
   <aside class="sidebar">
 
-    <div class="sidebar-inner sidebar-overview-active">
+    <div class="sidebar-inner sidebar-nav-active sidebar-toc-active">
       <!-- require APlayer -->
       <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.css">
       <script src="https://cdn.jsdelivr.net/npm/aplayer@1.10.1/dist/APlayer.min.js"></script>
@@ -126,6 +135,7 @@
       <div class="sidebar-panel-container">
         <!--noindex-->
         <div class="post-toc-wrap sidebar-panel">
+            <div class="post-toc animated"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#%E7%BB%A7%E6%89%BF"><span class="nav-text">继承</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#%E8%AF%86%E5%88%AB%E7%B1%BB%E4%B8%8E%E7%B1%BB%E4%B9%8B%E9%97%B4%E7%9A%84%E5%85%B3%E7%B3%BB"><span class="nav-text">识别类与类之间的关系</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%A4%9A%E6%80%81%E3%80%81%E8%99%9A%E8%A1%A8"><span class="nav-text">多态、虚表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%88%B6%E5%AD%90%E7%B1%BB%E9%83%BD%E6%9C%89%E8%99%9A%E8%A1%A8"><span class="nav-text">父子类都有虚表</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%AE%9A%E4%B9%89%E5%85%B6%E4%BB%96%E5%AF%B9%E8%B1%A1-%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="nav-text">定义其他对象+初始化列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E7%BB%BC%E5%90%88%E5%88%86%E6%9E%90"><span class="nav-text">综合分析</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF"><span class="nav-text">多重继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E7%89%B9%E5%BE%81%E6%80%BB%E7%BB%93"><span class="nav-text">特征总结</span></a></li></ol></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%99%9A%E5%9F%BA%E7%B1%BB"><span class="nav-text">虚基类</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#%E8%8F%B1%E5%BD%A2%E7%BB%A7%E6%89%BF"><span class="nav-text">菱形继承</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0"><span class="nav-text">构造函数</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E9%99%84%E5%BD%95"><span class="nav-text">附录</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#c-%E4%B8%89%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F"><span class="nav-text">c++三种继承方式</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#%E5%88%9D%E5%A7%8B%E5%8C%96%E5%88%97%E8%A1%A8"><span class="nav-text">初始化列表</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#%E5%85%B3%E4%BA%8E%E8%99%9A%E5%87%BD%E6%95%B0%E5%92%8C%E7%BA%AF%E8%99%9A%E5%87%BD%E6%95%B0"><span class="nav-text">关于虚函数和纯虚函数</span></a></li></ol></li></ol></div>
         </div>
         <!--/noindex-->
 
@@ -208,16 +218,17 @@
 </noscript>
 
 
-    <div class="main-inner index posts-expand">
+    <div class="main-inner post posts-expand">
 
-    
+
+  
 
 
 <div class="post-block">
   
   
 
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
+  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="en">
     <link itemprop="mainEntityOfPage" href="http://example.com/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/">
 
     <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
@@ -230,9 +241,9 @@
       <meta itemprop="name" content="NewbieReer's blog">
     </span>
       <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/" class="post-title-link" itemprop="url">继承和多重继承</a>
-        </h2>
+        <h1 class="post-title" itemprop="name headline">
+          继承和多重继承
+        </h1>
 
         <div class="post-meta-container">
           <div class="post-meta">
@@ -256,7 +267,7 @@
     
     
     <div class="post-body" itemprop="articleBody">
-          <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="识别类与类之间的关系"><a href="#识别类与类之间的关系" class="headerlink" title="识别类与类之间的关系"></a>识别类与类之间的关系</h2><p><a href="#c++%E4%B8%89%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">这里</a>附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="识别类与类之间的关系"><a href="#识别类与类之间的关系" class="headerlink" title="识别类与类之间的关系"></a>识别类与类之间的关系</h2><p><a href="#c++%E4%B8%89%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">这里</a>附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。</p>
 <p><strong>当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数：</strong></p>
 <p><strong>子类的成员函数</strong>：</p>
 <p>​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。</p>
@@ -446,7 +457,6 @@
 <p>参考自<a href="#https://www.runoob.com/w3cnote/cpp-construct-function-initial-list.html">菜鸟教程</a></p>
 <h2 id="关于虚函数和纯虚函数"><a href="#关于虚函数和纯虚函数" class="headerlink" title="关于虚函数和纯虚函数"></a>关于虚函数和纯虚函数</h2><p><a target="_blank" rel="noopener" href="https://blog.csdn.net/hackbuteer1/article/details/7558868">https://blog.csdn.net/hackbuteer1/article/details/7558868</a></p>
 <div id="footnotes"><hr><div id="footnotelist"><ol style="list-style: none; padding-left: 0; margin-left: 40px"><li id="fn:1"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">1.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">加密与解密中经常看到代码中有【m_】开头的变量，在<a target="_blank" rel="noopener" href="http://c.biancheng.net/view/2217.html">这里</a>可以看到解释：“成员变量大都以m_开头，这是约定俗称的写法”，这样可以一眼就看出是成员变量，而且还可以和形参进行区别。<a href="#fnref:1" rev="footnote"> ↩</a></span></li><li id="fn:2"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">2.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">这个时候父类有构造函数。<a href="#fnref:2" rev="footnote"> ↩</a></span></li><li id="fn:3"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">3.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">编译器会提供构造函数帮助父类初始化虚表。<a href="#fnref:3" rev="footnote"> ↩</a></span></li><li id="fn:4"><span style="display: inline-block; vertical-align: top; padding-right: 10px; margin-left: -40px">4.</span><span style="display: inline-block; vertical-align: top; margin-left: 10px;">https://www.cnblogs.com/yilang/p/11824849.html<a href="#fnref:4" rev="footnote"> ↩</a></span></li></ol></div></div>
-      
     </div>
 
     
@@ -454,242 +464,18 @@
     
 
     <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
 
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/04/%E9%9D%92%E6%98%A5%E4%B9%8B%E6%AD%8C%E8%AF%BB%E5%90%8E%E6%84%9F/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/04/%E9%9D%92%E6%98%A5%E4%B9%8B%E6%AD%8C%E8%AF%BB%E5%90%8E%E6%84%9F/" class="post-title-link" itemprop="url">青春之歌——用信仰奏响</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-02-04 21:23:59" itemprop="dateCreated datePublished" datetime="2022-02-04T21:23:59+08:00">2022-02-04</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-02-05 19:57:15" itemprop="dateModified" datetime="2022-02-05T19:57:15+08:00">2022-02-05</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>激越的青春，难忘的岁月。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/04/%E9%9D%92%E6%98%A5%E4%B9%8B%E6%AD%8C%E8%AF%BB%E5%90%8E%E6%84%9F/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
         
-      
-    </div>
 
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/03/hws%E5%86%AC%E4%BB%A4%E8%90%A5%E9%A2%84%E7%83%AD/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/03/hws%E5%86%AC%E4%BB%A4%E8%90%A5%E9%A2%84%E7%83%AD/" class="post-title-link" itemprop="url">hws冬令营预热</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-02-03 16:12:07" itemprop="dateCreated datePublished" datetime="2022-02-03T16:12:07+08:00">2022-02-03</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-02-04 22:05:55" itemprop="dateModified" datetime="2022-02-04T22:05:55+08:00">2022-02-04</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>我现在越来越坚定了一种信念，对于工科来说，没有经过实践的知识算未掌握，本文只是预热，资料仅为以后使用做参考。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/03/hws%E5%86%AC%E4%BB%A4%E8%90%A5%E9%A2%84%E7%83%AD/#more" rel="contents">
-                Read more &raquo;
-              </a>
+          <div class="post-nav">
+            <div class="post-nav-item">
+                <a href="/2022/02/04/%E9%9D%92%E6%98%A5%E4%B9%8B%E6%AD%8C%E8%AF%BB%E5%90%8E%E6%84%9F/" rel="prev" title="青春之歌——用信仰奏响">
+                  <i class="fa fa-chevron-left"></i> 青春之歌——用信仰奏响
+                </a>
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/02/02/%E4%BA%9A%E4%BA%9A%E4%BA%9A%E6%B8%B8%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/02/02/%E4%BA%9A%E4%BA%9A%E4%BA%9A%E6%B8%B8%E8%AE%B0/" class="post-title-link" itemprop="url">亚亚亚游记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-02-02 23:07:44" itemprop="dateCreated datePublished" datetime="2022-02-02T23:07:44+08:00">2022-02-02</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-03-13 00:19:11" itemprop="dateModified" datetime="2022-03-13T00:19:11+08:00">2022-03-13</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>游人们会否都带有着记录的使命？
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/02/02/%E4%BA%9A%E4%BA%9A%E4%BA%9A%E6%B8%B8%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
+            <div class="post-nav-item">
             </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
+          </div>
     </footer>
   </article>
 </div>
@@ -697,472 +483,7 @@
 
 
 
-    
 
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/20/%E6%97%A5%E8%AE%B0/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/20/%E6%97%A5%E8%AE%B0/" class="post-title-link" itemprop="url">日记</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-01-20 15:18:40" itemprop="dateCreated datePublished" datetime="2022-01-20T15:18:40+08:00">2022-01-20</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-03-12 23:39:06" itemprop="dateModified" datetime="2022-03-12T23:39:06+08:00">2022-03-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p><font size='100'>稳中求进</font></p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/20/%E6%97%A5%E8%AE%B0/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/" class="post-title-link" itemprop="url">近期比赛复现1</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-      
-
-      <time title="Created: 2022-01-15 08:34:15 / Modified: 15:03:37" itemprop="dateCreated datePublished" datetime="2022-01-15T08:34:15+08:00">2022-01-15</time>
-    </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="近期比赛复现"><a href="#近期比赛复现" class="headerlink" title="近期比赛复现"></a>近期比赛复现</h1><p>2022-1-15</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/15/%E8%BF%91%E6%9C%9F%E6%AF%94%E8%B5%9B%E5%A4%8D%E7%8E%B01/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2022/01/05/%E5%BC%82%E5%B8%B8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2022/01/05/%E5%BC%82%E5%B8%B8/" class="post-title-link" itemprop="url">异常</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2022-01-05 00:33:54" itemprop="dateCreated datePublished" datetime="2022-01-05T00:33:54+08:00">2022-01-05</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2022-01-12 17:08:15" itemprop="dateModified" datetime="2022-01-12T17:08:15+08:00">2022-01-12</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="异常"><a href="#异常" class="headerlink" title="异常"></a>异常</h1><p>本文集中于对异常的探究</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2022/01/05/%E5%BC%82%E5%B8%B8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/09/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/09/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020/" class="post-title-link" itemprop="url">羊城杯2020-RE</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-09 18:14:10" itemprop="dateCreated datePublished" datetime="2021-09-09T18:14:10+08:00">2021-09-09</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-19 23:52:51" itemprop="dateModified" datetime="2021-09-19T23:52:51+08:00">2021-09-19</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <p>题都比较简单，但是需要细心，否则会在debug上耗费大量时间</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/09/%E7%BE%8A%E5%9F%8E%E6%9D%AF2020/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/" class="post-title-link" itemprop="url">华电-工控</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-09-06 05:27:24" itemprop="dateCreated datePublished" datetime="2021-09-06T05:27:24+08:00">2021-09-06</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-19 23:52:26" itemprop="dateModified" datetime="2021-09-19T23:52:26+08:00">2021-09-19</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h1 id="二类-easy-re"><a href="#二类-easy-re" class="headerlink" title="二类-easy_re"></a>二类-easy_re</h1><p>放到ida里，shift f12找关键字符串
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/09/06/%E5%8D%8E%E7%94%B5-%E5%B7%A5%E6%8E%A7/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-    
-
-
-<div class="post-block">
-  
-  
-
-  <article itemscope itemtype="http://schema.org/Article" class="post-content" lang="">
-    <link itemprop="mainEntityOfPage" href="http://example.com/2021/07/29/%E6%9C%89%E8%B6%A3%E7%9A%84%E8%B5%84%E6%BA%90%E8%A1%A8/">
-
-    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
-      <meta itemprop="image" content="/images/touxiang.jpg">
-      <meta itemprop="name" content="NewbieReer">
-      <meta itemprop="description" content="一篇诗，一斗酒，一曲长歌，一剑天涯">
-    </span>
-
-    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
-      <meta itemprop="name" content="NewbieReer's blog">
-    </span>
-      <header class="post-header">
-        <h2 class="post-title" itemprop="name headline">
-          <a href="/2021/07/29/%E6%9C%89%E8%B6%A3%E7%9A%84%E8%B5%84%E6%BA%90%E8%A1%A8/" class="post-title-link" itemprop="url">有趣的资源表（一）</a>
-        </h2>
-
-        <div class="post-meta-container">
-          <div class="post-meta">
-    <span class="post-meta-item">
-      <span class="post-meta-item-icon">
-        <i class="far fa-calendar"></i>
-      </span>
-      <span class="post-meta-item-text">Posted on</span>
-
-      <time title="Created: 2021-07-29 23:33:15" itemprop="dateCreated datePublished" datetime="2021-07-29T23:33:15+08:00">2021-07-29</time>
-    </span>
-      <span class="post-meta-item">
-        <span class="post-meta-item-icon">
-          <i class="far fa-calendar-check"></i>
-        </span>
-        <span class="post-meta-item-text">Edited on</span>
-        <time title="Modified: 2021-09-19 23:52:56" itemprop="dateModified" datetime="2021-09-19T23:52:56+08:00">2021-09-19</time>
-      </span>
-
-  
-</div>
-
-        </div>
-      </header>
-
-    
-    
-    
-    <div class="post-body" itemprop="articleBody">
-          <h2 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h2><p>​    本文参考资料<strong>几乎全部</strong>来自《Windows PE权威指南》，加上自己的一些理解和整理。 尽管本文对大致的资源结构有了介绍，但是并没有涉猎对于某资源具体地解析和修改。如果之后博主需要用到这些没有涉猎的知识，或者时间充裕的情况下，会继续写文章介绍。</p>
-<p>​    如果读者只想了解【资源表】相关知识，可以直接从<a href="#%E8%B5%84%E6%BA%90%E8%A1%A8%E7%9A%84%E7%BB%84%E7%BB%87%E6%96%B9%E5%BC%8F">资源表的组织方式</a>开始看起。</p>
-          <!--noindex-->
-            <div class="post-button">
-              <a class="btn" href="/2021/07/29/%E6%9C%89%E8%B6%A3%E7%9A%84%E8%B5%84%E6%BA%90%E8%A1%A8/#more" rel="contents">
-                Read more &raquo;
-              </a>
-            </div>
-          <!--/noindex-->
-        
-      
-    </div>
-
-    
-    
-    
-
-    <footer class="post-footer">
-        <div class="post-eof"></div>
-      
-    </footer>
-  </article>
-</div>
-
-
-
-
-  <nav class="pagination">
-    <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="extend next" rel="next" href="/page/2/"><i class="fa fa-angle-right" aria-label="Next page"></i></a>
-  </nav>
 
 </div>
   </main>

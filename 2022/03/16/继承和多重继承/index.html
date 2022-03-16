@@ -21,12 +21,12 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/animate.css@3.1.1/animate.min.css" integrity="sha256-PR7ttpcvz8qrF57fur/yAx1qXMFJeJFiA6pSzWi0OIE=" crossorigin="anonymous">
 
 <script class="next-config" data-name="main" type="application/json">{"hostname":"example.com","root":"/","images":"/images","scheme":"Gemini","version":"8.6.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12},"copycode":false,"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"fadeInDown","post_body":"fadeInDown","coll_header":"fadeInLeft","sidebar":"fadeInUp"}},"prism":false,"i18n":{"placeholder":"Searching...","empty":"We didn't find any results for the search: ${query}","hits_time":"${hits} results found in ${time} ms","hits":"${hits} results found"}}</script><script src="/js/config.js"></script>
-<meta name="description" content="继承识别类与类之间的关系这里附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。 当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数： 子类的成员函数： ​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。 子类的构造函数：        注：先 p">
+<meta name="description" content="c++逆向（一）">
 <meta property="og:type" content="article">
 <meta property="og:title" content="继承和多重继承">
 <meta property="og:url" content="http://example.com/2022/03/16/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/index.html">
 <meta property="og:site_name" content="NewbieReer&#39;s blog">
-<meta property="og:description" content="继承识别类与类之间的关系这里附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。 当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数： 子类的成员函数： ​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。 子类的构造函数：        注：先 p">
+<meta property="og:description" content="c++逆向（一）">
 <meta property="og:locale" content="en_US">
 <meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210831140327245.png">
 <meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210916155258109.png">
@@ -35,7 +35,7 @@
 <meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918114718569.png">
 <meta property="og:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210918115710515.png">
 <meta property="article:published_time" content="2022-03-16T10:45:55.721Z">
-<meta property="article:modified_time" content="2022-03-16T10:49:41.942Z">
+<meta property="article:modified_time" content="2022-03-16T10:51:01.524Z">
 <meta property="article:author" content="NewbieReer">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:image" content="http://example.com/images/%E7%BB%A7%E6%89%BF%E5%92%8C%E5%A4%9A%E9%87%8D%E7%BB%A7%E6%89%BF/image-20210831140327245.png">
@@ -254,7 +254,7 @@
       <span class="post-meta-item-text">Posted on</span>
       
 
-      <time title="Created: 2022-03-16 18:45:55 / Modified: 18:49:41" itemprop="dateCreated datePublished" datetime="2022-03-16T18:45:55+08:00">2022-03-16</time>
+      <time title="Created: 2022-03-16 18:45:55 / Modified: 18:51:01" itemprop="dateCreated datePublished" datetime="2022-03-16T18:45:55+08:00">2022-03-16</time>
     </span>
 
   
@@ -267,7 +267,10 @@
     
     
     <div class="post-body" itemprop="articleBody">
-        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="识别类与类之间的关系"><a href="#识别类与类之间的关系" class="headerlink" title="识别类与类之间的关系"></a>识别类与类之间的关系</h2><p><a href="#c++%E4%B8%89%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">这里</a>附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。</p>
+        <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/hint.css/2.4.1/hint.min.css"><p>c++逆向（一）</p>
+<span id="more"></span>
+
+<h1 id="继承"><a href="#继承" class="headerlink" title="继承"></a>继承</h1><h2 id="识别类与类之间的关系"><a href="#识别类与类之间的关系" class="headerlink" title="识别类与类之间的关系"></a>识别类与类之间的关系</h2><p><a href="#c++%E4%B8%89%E7%A7%8D%E7%BB%A7%E6%89%BF%E6%96%B9%E5%BC%8F">这里</a>附c++继承说明。子类对象的内存结构中，父类私有数据成员依然存在，也就是说c++语法规定的访问控制仅限于编译层面。</p>
 <p><strong>当子类【没有构造函数】，而父类有构造函数时，编译器会为子类添加默认构造函数：</strong></p>
 <p><strong>子类的成员函数</strong>：</p>
 <p>​        第一个参数是对象首地址*lea ecx,[ebp-14h]*，后面的参数是成员函数所需的剩余变量。</p>
